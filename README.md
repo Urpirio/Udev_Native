@@ -85,7 +85,7 @@ import { InputText } from 'udev_ultime_native';
 
 ### InputPassword
 
-Campo de entrada específico para contraseñas con funcionalidad de mostrar/ocultar y estilos por defecto optimizados.
+Campo de entrada específico para contraseñas con funcionalidad de mostrar/ocultar y manejo interno del estado.
 
 ```js
 import { InputPassword } from 'udev_ultime_native';
@@ -94,14 +94,11 @@ import { InputPassword } from 'udev_ultime_native';
   placeholder="Ingresa tu contraseña"
   value={password}
   onChangeText={setPassword}
-  ShowPassword={showPassword}
-  setShowPassword={setShowPassword}
   iconPasswordShow={<Icon name="eye" />}
   iconPasswordHide={<Icon name="eye-off" />}
   style_container={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
   style_input={{ fontSize: 16 }}
   placeholderTextColor="gray"
-  label={<Text>Contraseña:</Text>}
 />
 ```
 
@@ -115,9 +112,8 @@ import { InputPassword } from 'udev_ultime_native';
 - `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto con flexDirection row)
 - `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
 - `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
-- `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
-- `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
-- `label` (JSX.Element, opcional): Etiqueta o label del campo
+
+**Nota:** El estado de visibilidad de contraseña (`ShowPassword`) ahora se maneja internamente por el componente, no necesitas manejarlo externamente.
 
 ### InputTextarea
 
@@ -203,7 +199,6 @@ export default function App() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   const options = [
     { label: 'Opción 1', value: 'option1' },
@@ -224,8 +219,6 @@ export default function App() {
         placeholder="Ingresa tu contraseña"
         value={password}
         onChangeText={setPassword}
-        ShowPassword={showPassword}
-        setShowPassword={setShowPassword}
         style_container={{ marginBottom: 10, borderWidth: 1, borderColor: 'gray', padding: 10 }}
       />
       

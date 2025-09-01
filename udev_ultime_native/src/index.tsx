@@ -154,8 +154,6 @@ export function InputText({
 }
 
 export function InputPassword({
-  setShowPassword,
-  ShowPassword,
   iconPasswordShow,
   iconPasswordHide,
   value,
@@ -165,6 +163,7 @@ export function InputPassword({
   style_container,
   style_input,
 }: InputText_Props) {
+  const [ShowPassword, setShowPassword] = useState<boolean>(false);
   return (
     <View
       style={
