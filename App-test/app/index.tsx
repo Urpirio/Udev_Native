@@ -11,7 +11,7 @@ import {
 
 export default function index() {
   const [showPassword, setShowPassword] = useState(true);
-  const [isOpen,setIsOpen] = useState(false);
+  const [DropDownValue, setDropdownValue] = useState<string | number | undefined>();
 
   return (
     <SafeAreaProvider
@@ -28,30 +28,12 @@ export default function index() {
       >
         <Text>index</Text>
         <Button
-          style_button={{
-            borderWidth: 1,
-            backgroundColor: "black",
-            borderRadius: 10,
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-          }}
-          style_text={{ color: "white" }}
           title="Press me"
           onPress={() => alert("Button pressed!")}
           type_button="Pressable"
         />
         <InputPassword
           placeholder="Enter your password"
-          style_container={{
-            borderWidth: 1,
-            width: "100%",
-            borderColor: "gray",
-            borderRadius: 10,
-            padding: 10,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
           style_input={{ width: "80%" }}
           placeholderTextColor="gray"
           setShowPassword={setShowPassword}
@@ -86,33 +68,40 @@ export default function index() {
 
         <DropDown
           data_option={[
-            { label: "Option 1", value: 1 },
-            { label: "Option 2", value: 2 },
-            { label: "Option 3", value: 3 },
+            { label: "Option 1", value: "Option 1" },
+            { label: "Option 2", value: "Option 2" },
+            { label: "Option 3", value: "Option 3" },
           ]}
           style_container={{
             borderWidth: 1,
-            borderColor: "gray",
             borderRadius: 10,
             width: "100%",
-            alignItems:"center"
+            paddingVertical: 10,
           }}
           placeholder="Select an option"
           style_container_option={{
             borderWidth: 1,
             position: "absolute",
-            marginTop: 40,
+            marginTop: 55,
             width: "100%",
-            padding: 10,
-            borderRadius:10,
-            gap:10,
+            padding: 5,
+            borderRadius: 15,
+            gap: 10,
           }}
-          style_text_placeholder={{ color: "gray",padding:10 }}
+          style_buttonOpen_option={{
+            width: "100%",
+            paddingVertical: 5,
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        
+          setValue={setDropdownValue}
+          Value={DropDownValue}
+          style_text_placeholder={{ color: "black", alignItems: "center" }}
           style_button_option={{
             width: "100%",
-            borderWidth:1,
-            borderRadius:10,
-            padding:10,
+            borderRadius: 10,
+            padding: 10,
           }}
         />
       </View>

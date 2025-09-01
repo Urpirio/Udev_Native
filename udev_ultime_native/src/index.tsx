@@ -112,7 +112,19 @@ export function InputText({
   placeholderTextColor,
 }: InputText_Props) {
   return (
-    <View style={style_container}>
+    <View
+      style={
+        style_container
+          ? style_container
+          : {
+              borderWidth: 1,
+              width: '100%',
+              borderColor: 'gray',
+              borderRadius: 10,
+              padding: 10,
+            }
+      }
+    >
       {iconLeft && iconLeft}
       <TextInput
         multiline={multiline}
@@ -120,10 +132,12 @@ export function InputText({
         keyboardType={keyboardType}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
-        style={style_input}
+        style={style_input ? style_input : { width: '80%' }}
         onChangeText={onChangeText}
         value={value}
-        placeholderTextColor={placeholderTextColor}
+        placeholderTextColor={
+          placeholderTextColor ? placeholderTextColor : 'gray'
+        }
       />
       {secureTextEntry && (
         <TouchableOpacity
@@ -206,11 +220,10 @@ export function InputTextarea({
           ? style_container
           : {
               borderWidth: 1,
+              width: '100%',
               borderColor: 'gray',
               borderRadius: 10,
               padding: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
             }
       }
     >
@@ -253,10 +266,9 @@ export function DropDown({
           ? style_container
           : {
               borderWidth: 1,
-              borderColor: 'gray',
               borderRadius: 10,
               width: '100%',
-              alignItems: 'center',
+              paddingVertical: 10,
             }
       }
     >
@@ -264,12 +276,23 @@ export function DropDown({
         style={
           style_buttonOpen_option
             ? style_buttonOpen_option
-            : { width: '100%', height: 20 }
+            : {
+                width: '100%',
+                paddingVertical: 5,
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }
         }
         onPress={() => setIsOpen(!isOpen)}
         onPressOut={() => setIsOpen(false)}
       >
-        <Text style={style_text_placeholder}>
+        <Text
+          style={
+            style_text_placeholder
+              ? style_text_placeholder
+              : { color: 'black', alignItems: 'center' }
+          }
+        >
           {Value ? Value : placeholder}
         </Text>
         {icon}
@@ -282,10 +305,10 @@ export function DropDown({
               : {
                   borderWidth: 1,
                   position: 'absolute',
-                  marginTop: 40,
+                  marginTop: 55,
                   width: '100%',
-                  padding: 10,
-                  borderRadius: 10,
+                  padding: 5,
+                  borderRadius: 15,
                   gap: 10,
                 }
           }
@@ -298,12 +321,14 @@ export function DropDown({
                   ? style_button_option
                   : {
                       width: '100%',
-                      borderWidth: 1,
                       borderRadius: 10,
                       padding: 10,
                     }
               }
-              onPress={() => (setValue ? setValue(item.value) : null)}
+              onPress={() => {
+                setValue ? setValue(item.value) : null;
+                setIsOpen(false);
+              }}
             >
               <Text
                 style={

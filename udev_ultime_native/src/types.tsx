@@ -1,4 +1,4 @@
-import type { Dispatch, JSX,  SetStateAction } from 'react';
+import type { Dispatch, JSX, SetStateAction } from 'react';
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export interface Button_Props {
@@ -38,12 +38,14 @@ export interface DropDown_Props {
   style_text_option?: StyleProp<TextStyle>;
   style_text_placeholder?: StyleProp<TextStyle>;
   style_text_selected?: StyleProp<TextStyle>;
-  setValue?: Dispatch<SetStateAction<string | number>>;
-  Value?: string | number;
-  data_option?: {
-    label: string;
-    value: string | number;
-  }[] | null;
+  setValue?: Dispatch<SetStateAction<string | number | undefined>>;
+  Value?: string | number | undefined;
+  data_option?:
+    | {
+        label: string;
+        value: string | number | undefined;
+      }[]
+    | null;
   placeholder?: string;
   isOpen?: boolean;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
