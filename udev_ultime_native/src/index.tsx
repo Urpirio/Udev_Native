@@ -105,6 +105,65 @@ export function InputText({
   );
 }
 
+export function InputPassword({
+  setShowPassword,
+  ShowPassword,
+  iconPasswordShow,
+  iconPasswordHide,
+  value,
+  onChangeText,
+  placeholder,
+  placeholderTextColor,
+  style_container,
+  style_input,
+}: InputText_Props) {
+  return (
+    <View style={style_container}>
+      <TextInput
+        style={style_input}
+        secureTextEntry={ShowPassword}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+      />
+      <TouchableOpacity
+        onPress={() =>
+          setShowPassword ? setShowPassword(!ShowPassword) : null
+        }
+      >
+        {ShowPassword ? iconPasswordHide : iconPasswordShow}
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+export function InputTextarea({
+  value,
+  onChangeText,
+  placeholder,
+  placeholderTextColor,
+  style_container,
+  style_input,
+  iconLeft,
+  iconRight
+}: InputText_Props) {
+  return (
+    <View style={style_container}>
+      {iconLeft && iconLeft}
+      <TextInput
+        value={value}
+        multiline={true}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
+        style={style_input}
+      />
+      {iconRight && iconRight}
+    </View>
+  );
+};
+
 export function DropDown({
   style_container,
   style_container_option,

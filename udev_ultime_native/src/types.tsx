@@ -34,7 +34,7 @@ export interface InputText_Props {
 export interface DropDown_Props {
   style_container?: StyleProp<ViewStyle>;
   style_container_option?: StyleProp<ViewStyle>;
-  style_button_option?: StyleProp<TextStyle>;
+  style_button_option?: StyleProp<ViewStyle>;
   style_text_option?: StyleProp<TextStyle>;
   style_text_placeholder?: StyleProp<TextStyle>;
   style_text_selected?: StyleProp<TextStyle>;
