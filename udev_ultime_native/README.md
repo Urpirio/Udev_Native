@@ -1,6 +1,6 @@
 # udev_ultime_native
 
-Librería de componentes UI para React Native que incluye botones personalizables, campos de texto y menús desplegables.
+Librería de componentes UI para React Native que incluye botones personalizables, campos de texto, áreas de texto, campos de contraseña y menús desplegables.
 
 ## Installation
 
@@ -81,6 +81,70 @@ import { InputText } from 'udev_ultime_native';
 - `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
 - `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
 
+### InputPassword
+
+Campo de entrada específico para contraseñas con funcionalidad de mostrar/ocultar.
+
+```js
+import { InputPassword } from 'udev_ultime_native';
+
+<InputPassword
+  placeholder="Ingresa tu contraseña"
+  value={password}
+  onChangeText={setPassword}
+  ShowPassword={showPassword}
+  setShowPassword={setShowPassword}
+  iconPasswordShow={<Icon name="eye" />}
+  iconPasswordHide={<Icon name="eye-off" />}
+  style_container={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+  style_input={{ fontSize: 16 }}
+  placeholderTextColor="gray"
+/>
+```
+
+**Props:**
+
+- `value` (string, opcional): Valor del campo de contraseña
+- `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
+- `placeholder` (string, opcional): Texto de placeholder
+- `placeholderTextColor` (string, opcional): Color del placeholder
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor
+- `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
+- `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
+- `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
+- `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
+
+### InputTextarea
+
+Campo de texto multilínea para entradas de texto más largas.
+
+```js
+import { InputTextarea } from 'udev_ultime_native';
+
+<InputTextarea
+  placeholder="Escribe tu mensaje aquí..."
+  value={message}
+  onChangeText={setMessage}
+  style_container={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+  style_input={{ height: 100, textAlignVertical: 'top' }}
+  placeholderTextColor="gray"
+  iconLeft={<Icon name="message" />}
+  iconRight={<Icon name="send" />}
+/>
+```
+
+**Props:**
+
+- `value` (string, opcional): Valor del campo de texto
+- `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
+- `placeholder` (string, opcional): Texto de placeholder
+- `placeholderTextColor` (string, opcional): Color del placeholder
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor
+- `iconLeft` (JSX.Element, opcional): Icono a la izquierda
+- `iconRight` (JSX.Element, opcional): Icono a la derecha
+
 ### DropDown
 
 Menú desplegable personalizable con opciones seleccionables.
@@ -123,10 +187,12 @@ const options = [
 ```js
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Button, InputText, DropDown } from 'udev_ultime_native';
+import { Button, InputText, InputPassword, InputTextarea, DropDown } from 'udev_ultime_native';
 
 export default function App() {
   const [text, setText] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -139,10 +205,27 @@ export default function App() {
   return (
     <View style={{ padding: 20 }}>
       <InputText
-        placeholder="Ingresa tu texto"
+        placeholder="Ingresa tu nombre"
         value={text}
         onChangeText={setText}
-        style_container={{ marginBottom: 10 }}
+        style_container={{ marginBottom: 10, borderWidth: 1, borderColor: 'gray', padding: 10 }}
+      />
+      
+      <InputPassword
+        placeholder="Ingresa tu contraseña"
+        value={password}
+        onChangeText={setPassword}
+        ShowPassword={showPassword}
+        setShowPassword={setShowPassword}
+        style_container={{ marginBottom: 10, borderWidth: 1, borderColor: 'gray', padding: 10 }}
+      />
+      
+      <InputTextarea
+        placeholder="Escribe tu mensaje..."
+        value={message}
+        onChangeText={setMessage}
+        style_container={{ marginBottom: 10, borderWidth: 1, borderColor: 'gray', padding: 10 }}
+        style_input={{ height: 80, textAlignVertical: 'top' }}
       />
       
       <DropDown
@@ -156,7 +239,7 @@ export default function App() {
       <Button
         title="Enviar"
         type_button="TouchableOpacity"
-        onPress={() => console.log('Texto:', text, 'Selección:', selectedValue)}
+        onPress={() => console.log('Datos:', { text, password, message, selectedValue })}
         style_button={{ backgroundColor: 'blue', padding: 15, borderRadius: 5 }}
         style_text={{ color: 'white', textAlign: 'center' }}
       />
