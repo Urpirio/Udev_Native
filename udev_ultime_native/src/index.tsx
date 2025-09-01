@@ -164,7 +164,6 @@ export function InputPassword({
   placeholderTextColor,
   style_container,
   style_input,
-  label
 }: InputText_Props) {
   return (
     <View
@@ -183,7 +182,6 @@ export function InputPassword({
             }
       }
     >
-      {label && label}
       <TextInput
         style={style_input ? style_input : { width: '80%' }}
         secureTextEntry={ShowPassword}
