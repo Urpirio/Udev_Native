@@ -29,6 +29,7 @@ export interface InputText_Props {
   ShowPassword?: boolean;
   style_container?: StyleProp<ViewStyle>;
   placeholderTextColor?: string;
+  label?: JSX.Element;
 }
 
 export interface DropDown_Props {

@@ -14,7 +14,7 @@ Esta librería incluye los siguientes componentes:
 
 ### Button
 
-Componente de botón personalizable que soporta diferentes tipos de interacción.
+Componente de botón personalizable que soporta diferentes tipos de interacción con estilos por defecto.
 
 ```js
 import { Button } from 'udev_ultime_native';
@@ -36,14 +36,14 @@ import { Button } from 'udev_ultime_native';
 - `type_button` ('TouchableOpacity' | 'Pressable' | 'TouchableHighlight'): Tipo de componente de botón
 - `onPress` (function, opcional): Función ejecutada al presionar
 - `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente
-- `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón
-- `style_text` (StyleProp\<TextStyle>, opcional): Estilos del texto
+- `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón (tiene estilos por defecto)
+- `style_text` (StyleProp\<TextStyle>, opcional): Estilos del texto (tiene estilos por defecto)
 - `iconLeft` (JSX.Element, opcional): Icono a la izquierda del texto
 - `iconRight` (JSX.Element, opcional): Icono a la derecha del texto
 
 ### InputText
 
-Campo de texto con funcionalidades avanzadas como iconos y modo contraseña.
+Campo de texto con funcionalidades avanzadas como iconos, modo contraseña y estilos por defecto.
 
 ```js
 import { InputText } from 'udev_ultime_native';
@@ -59,6 +59,7 @@ import { InputText } from 'udev_ultime_native';
   iconPasswordHide={<Icon name="eye-off" />}
   setShowPassword={setShowPassword}
   ShowPassword={showPassword}
+  label={<Text>Email:</Text>}
 />
 ```
 
@@ -71,19 +72,20 @@ import { InputText } from 'udev_ultime_native';
 - `secureTextEntry` (boolean, opcional): Modo contraseña
 - `editable` (boolean, opcional): Si el campo es editable
 - `multiline` (boolean, opcional): Soporte para múltiples líneas
-- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input
-- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor
-- `placeholderTextColor` (string, opcional): Color del placeholder
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto)
+- `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
 - `iconLeft` (JSX.Element, opcional): Icono a la izquierda
 - `iconRight` (JSX.Element, opcional): Icono a la derecha
 - `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
 - `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
 - `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
 - `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
+- `label` (JSX.Element, opcional): Etiqueta o label del campo
 
 ### InputPassword
 
-Campo de entrada específico para contraseñas con funcionalidad de mostrar/ocultar.
+Campo de entrada específico para contraseñas con funcionalidad de mostrar/ocultar y estilos por defecto optimizados.
 
 ```js
 import { InputPassword } from 'udev_ultime_native';
@@ -99,6 +101,7 @@ import { InputPassword } from 'udev_ultime_native';
   style_container={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
   style_input={{ fontSize: 16 }}
   placeholderTextColor="gray"
+  label={<Text>Contraseña:</Text>}
 />
 ```
 
@@ -107,17 +110,18 @@ import { InputPassword } from 'udev_ultime_native';
 - `value` (string, opcional): Valor del campo de contraseña
 - `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
 - `placeholder` (string, opcional): Texto de placeholder
-- `placeholderTextColor` (string, opcional): Color del placeholder
-- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input
-- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor
+- `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto con flexDirection row)
 - `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
 - `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
 - `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
 - `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
+- `label` (JSX.Element, opcional): Etiqueta o label del campo
 
 ### InputTextarea
 
-Campo de texto multilínea para entradas de texto más largas.
+Campo de texto multilínea para entradas de texto más largas con estilos por defecto.
 
 ```js
 import { InputTextarea } from 'udev_ultime_native';
@@ -139,15 +143,15 @@ import { InputTextarea } from 'udev_ultime_native';
 - `value` (string, opcional): Valor del campo de texto
 - `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
 - `placeholder` (string, opcional): Texto de placeholder
-- `placeholderTextColor` (string, opcional): Color del placeholder
-- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input
-- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor
+- `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto)
 - `iconLeft` (JSX.Element, opcional): Icono a la izquierda
 - `iconRight` (JSX.Element, opcional): Icono a la derecha
 
 ### DropDown
 
-Menú desplegable personalizable con opciones seleccionables.
+Menú desplegable personalizable con opciones seleccionables, estilos por defecto y funcionalidad mejorada.
 
 ```js
 import { DropDown } from 'udev_ultime_native';
@@ -166,21 +170,26 @@ const options = [
   style_container={{ borderWidth: 1, borderColor: 'gray' }}
   style_text_placeholder={{ color: 'gray' }}
   style_text_selected={{ color: 'blue', fontWeight: 'bold' }}
+  icon={<Icon name="chevron-down" />}
 />
 ```
 
 **Props:**
 
 - `data_option` (Array, opcional): Array de objetos con `label` y `value`
-- `Value` (string | number, opcional): Valor seleccionado
+- `Value` (string | number | undefined, opcional): Valor seleccionado
 - `setValue` (function, opcional): Función para establecer el valor seleccionado
 - `placeholder` (string, opcional): Texto de placeholder
-- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal
-- `style_container_option` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor de opciones
-- `style_button_option` (StyleProp\<TextStyle>, opcional): Estilos de los botones de opción
-- `style_text_option` (StyleProp\<TextStyle>, opcional): Estilos del texto de las opciones
-- `style_text_placeholder` (StyleProp\<TextStyle>, opcional): Estilos del texto placeholder
-- `style_text_selected` (StyleProp\<TextStyle>, opcional): Estilos del texto seleccionado
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal (tiene estilos por defecto)
+- `style_container_option` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor de opciones (tiene estilos por defecto con posición absoluta)
+- `style_button_option` (StyleProp\<ViewStyle>, opcional): Estilos de los botones de opción (tiene estilos por defecto)
+- `style_text_option` (StyleProp\<TextStyle>, opcional): Estilos del texto de las opciones (tiene estilos por defecto)
+- `style_text_placeholder` (StyleProp\<TextStyle>, opcional): Estilos del texto placeholder (tiene estilos por defecto)
+- `style_text_selected` (StyleProp\<TextStyle>, opcional): Estilos del texto seleccionado (tiene estilos por defecto)
+- `style_buttonOpen_option` (StyleProp\<ViewStyle>, opcional): Estilos del botón para abrir el dropdown (tiene estilos por defecto)
+- `icon` (JSX.Element, opcional): Icono para el botón del dropdown
+- `isOpen` (boolean, opcional): Estado de apertura del dropdown (manejado internamente)
+- `setIsOpen` (function, opcional): Función para controlar el estado de apertura (manejado internamente)
 
 ## Ejemplo de uso completo
 
