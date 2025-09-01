@@ -48,4 +48,5 @@ export interface DropDown_Props {
   isOpen?: boolean;
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
   style_buttonOpen_option?: StyleProp<ViewStyle>;
+  icon?: JSX.Element | null;
 }
