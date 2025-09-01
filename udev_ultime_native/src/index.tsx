@@ -146,7 +146,7 @@ export function InputTextarea({
   style_container,
   style_input,
   iconLeft,
-  iconRight
+  iconRight,
 }: InputText_Props) {
   return (
     <View style={style_container}>
@@ -162,7 +162,7 @@ export function InputTextarea({
       {iconRight && iconRight}
     </View>
   );
-};
+}
 
 export function DropDown({
   style_container,
@@ -175,12 +175,14 @@ export function DropDown({
   setValue,
   data_option,
   placeholder,
+  style_buttonOpen_option
 }: DropDown_Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <View style={style_container}>
       <TouchableOpacity
+        style={style_buttonOpen_option}
         onPress={() => setIsOpen(!isOpen)}
         onPressOut={() => setIsOpen(false)}
       >
@@ -188,23 +190,25 @@ export function DropDown({
           {Value ? Value : placeholder}
         </Text>
       </TouchableOpacity>
-      <View style={style_container_option}>
-        {data_option?.map((item) => (
-          <TouchableOpacity
-            key={item.value}
-            style={style_button_option}
-            onPress={() => (setValue ? setValue(item.value) : null)}
-          >
-            <Text
-              style={
-                Value === item.value ? style_text_selected : style_text_option
-              }
+      {isOpen && (
+        <View style={style_container_option}>
+          {data_option?.map((item) => (
+            <TouchableOpacity
+              key={item.value}
+              style={style_button_option}
+              onPress={() => (setValue ? setValue(item.value) : null)}
             >
-              {item.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+              <Text
+                style={
+                  Value === item.value ? style_text_selected : style_text_option
+                }
+              >
+                {item.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </View>
   );
 }

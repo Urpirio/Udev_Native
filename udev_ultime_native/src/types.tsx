@@ -45,4 +45,7 @@ export interface DropDown_Props {
     value: string | number;
   }[] | null;
   placeholder?: string;
+  isOpen?: boolean;
+  setIsOpen?: Dispatch<SetStateAction<boolean>>;
+  style_buttonOpen_option?: StyleProp<ViewStyle>;
 }
