@@ -356,7 +356,7 @@ export default function App() {
         style_container={{ marginBottom: 10 }}
       />
       
-      <ProgressBar_Template
+      <ProgressBar
         progress={progress}
         height_bar={35}
         show_percentage={true}
