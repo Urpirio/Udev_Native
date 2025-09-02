@@ -1,6 +1,6 @@
 # udev_ultime_native
 
-Librería de componentes UI para React Native que incluye botones personalizables, campos de texto, áreas de texto, campos de contraseña y menús desplegables.
+Librería de componentes UI para React Native que incluye botones personalizables, campos de texto, áreas de texto, campos de contraseña, menús desplegables y barras de progreso.
 
 ## Installation
 
@@ -187,23 +187,74 @@ const options = [
 - `isOpen` (boolean, opcional): Estado de apertura del dropdown (manejado internamente)
 - `setIsOpen` (function, opcional): Función para controlar el estado de apertura (manejado internamente)
 
+### ProgressBar_Template
+
+Barra de progreso personalizable con soporte para porcentajes, iconos y estados múltiples.
+
+```js
+import { ProgressBar_Template } from 'udev_ultime_native';
+
+const statusBars = [
+  { color: '#ff4444', status: 'Bajo', progress: 25 },
+  { color: '#ffaa00', status: 'Medio', progress: 50 },
+  { color: '#44ff44', status: 'Alto', progress: 75 },
+  { color: '#0088ff', status: 'Completo', progress: 100 },
+];
+
+<ProgressBar_Template
+  progress={75}
+  height_bar={40}
+  bg_color_progress="#4CAF50"
+  bg_container_bar="#E0E0E0"
+  show_percentage={true}
+  status_bar={statusBars}
+  iconLeft={<Icon name="star" />}
+  iconRight={<Icon name="check" />}
+  style_container={{ marginVertical: 10 }}
+  text_style_percentage={{ fontSize: 14, fontWeight: 'bold' }}
+/>
+```
+
+**Props:**
+
+- `progress` (number): Valor del progreso (0-100)
+- `height_bar` (number, opcional): Altura de la barra (por defecto 30)
+- `bg_color_progress` (string, opcional): Color del progreso (por defecto 'black')
+- `bg_container_bar` (string, opcional): Color del contenedor (por defecto '#f8f9fa')
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal
+- `show_percentage` (boolean, opcional): Mostrar porcentaje en la barra
+- `iconLeft` (JSX.Element, opcional): Icono a la izquierda del porcentaje
+- `iconRight` (JSX.Element, opcional): Icono a la derecha del porcentaje
+- `status_bar` (Array, opcional): Array de objetos con estados (color, status, progress)
+- `text_style_percentage` (StyleProp\<TextStyle>, opcional): Estilos del texto de porcentaje
+- `text_percentage` (JSX.Element, opcional): Elemento personalizado para mostrar en lugar del porcentaje
+- `style_progress_bar` (StyleProp\<ViewStyle>, opcional): Estilos de la barra de progreso interna
+
 ## Ejemplo de uso completo
 
 ```js
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Button, InputText, InputPassword, InputTextarea, DropDown } from 'udev_ultime_native';
+import { Button, InputText, InputPassword, InputTextarea, DropDown, ProgressBar_Template } from 'udev_ultime_native';
 
 export default function App() {
   const [text, setText] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
+  const [progress, setProgress] = useState(65);
 
   const options = [
     { label: 'Opción 1', value: 'option1' },
     { label: 'Opción 2', value: 'option2' },
     { label: 'Opción 3', value: 'option3' },
+  ];
+
+  const statusBars = [
+    { color: '#ff4444', status: 'Bajo', progress: 25 },
+    { color: '#ffaa00', status: 'Medio', progress: 50 },
+    { color: '#44ff44', status: 'Alto', progress: 75 },
+    { color: '#0088ff', status: 'Completo', progress: 100 },
   ];
 
   return (
@@ -238,10 +289,18 @@ export default function App() {
         style_container={{ marginBottom: 10 }}
       />
       
+      <ProgressBar_Template
+        progress={progress}
+        height_bar={35}
+        show_percentage={true}
+        status_bar={statusBars}
+        style_container={{ marginBottom: 10 }}
+      />
+      
       <Button
         title="Enviar"
         type_button="TouchableOpacity"
-        onPress={() => console.log('Datos:', { text, password, message, selectedValue })}
+        onPress={() => console.log('Datos:', { text, password, message, selectedValue, progress })}
         style_button={{ backgroundColor: 'blue', padding: 15, borderRadius: 5 }}
         style_text={{ color: 'white', textAlign: 'center' }}
       />
