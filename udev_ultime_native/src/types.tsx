@@ -7,9 +7,20 @@ export interface Button_Props {
   style_text?: StyleProp<TextStyle>;
   onPress?: () => void;
   onLongPress?: () => void;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
+  onShowUnderlay?: () => void;
+  onAccessibilityAction?: () => void;
+  onAccessibilityEscape?: () => void;
+  onAccessibilityTap?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onHideUnderlay?: () => void;
+  onLayout?: () => void;
+  onMagicTap?: () => void;
   iconLeft?: JSX.Element;
   iconRight?: JSX.Element;
-  type_button: 'TouchableOpacity' | 'Pressable' | 'TouchableHighlight';
+  type_button?: 'TouchableOpacity' | 'Pressable' | 'TouchableHighlight';
 }
 
 export interface InputText_Props {
@@ -30,6 +41,28 @@ export interface InputText_Props {
   style_container?: StyleProp<ViewStyle>;
   placeholderTextColor?: string;
   label?: JSX.Element;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  onLayout?: () => void;
+  onSubmitEditing?: () => void;
+  onKeyPress?: () => void;
+  onChange?: () => void;
+  onContentSizeChange?: () => void;
+  onEndEditing?: () => void;
+  onSelectionChange?: () => void;
+  onTextInput?: () => void;
+  onAccessibilityAction?: () => void;
+  onAccessibilityEscape?: () => void;
+  onAccessibilityTap?: () => void;
+  onMagicTap?: () => void;
+  onPress?: () => void;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
+  readOnly?: boolean;
+  clearTextOnFocus?: boolean;
+  selectTextOnFocus?: boolean;
+  showSoftInputOnFocus?: boolean;
+  numberOfLines?: number;
 }
 
 export interface DropDown_Props {
@@ -52,4 +85,26 @@ export interface DropDown_Props {
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
   style_buttonOpen_option?: StyleProp<ViewStyle>;
   icon?: JSX.Element | null;
-}
+};
+
+ export interface ProgressBar_Props {
+  progress: number;
+  height_bar?: number;
+  bg_color_progress?: string;
+  bg_container_bar?: string;
+  style_container?: StyleProp<ViewStyle>;
+  show_percentage?: boolean;
+  iconRight?: JSX.Element | null;
+  iconLeft?: JSX.Element | null;
+  status_bar?: {
+    color: string;
+    status?: string;
+    progress: number;
+  }[];
+  text_style_percentage?: StyleProp<TextStyle>;
+  text_percentage?: JSX.Element | null;
+  style_progress_bar?: StyleProp<ViewStyle>;
+};
+
+
+
