@@ -7,11 +7,15 @@ import {
   InputPassword,
   InputText,
   InputTextarea,
+  ProgressBar
 } from "udev_ultime_native";
+
 
 export default function index() {
   const [showPassword, setShowPassword] = useState(true);
-  const [DropDownValue, setDropdownValue] = useState<string | number | undefined>();
+  const [DropDownValue, setDropdownValue] = useState<
+    string | number | undefined
+  >();
 
   return (
     <SafeAreaProvider
@@ -53,6 +57,7 @@ export default function index() {
           style_input={{ width: "80%" }}
           placeholderTextColor="gray"
         />
+        
         <InputTextarea
           placeholder="Enter your textarea"
           style_container={{
@@ -82,6 +87,8 @@ export default function index() {
           style_container_option={{
             borderWidth: 1,
             position: "absolute",
+            zIndex: 1000,
+            backgroundColor: "white",
             marginTop: 55,
             width: "100%",
             padding: 5,
@@ -94,7 +101,6 @@ export default function index() {
             flexDirection: "row",
             justifyContent: "center",
           }}
-        
           setValue={setDropdownValue}
           Value={DropDownValue}
           style_text_placeholder={{ color: "black", alignItems: "center" }}
@@ -103,6 +109,10 @@ export default function index() {
             borderRadius: 10,
             padding: 10,
           }}
+        />
+        <ProgressBar
+          progress={50}
+          show_percentage={true}
         />
       </View>
     </SafeAreaProvider>
