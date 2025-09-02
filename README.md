@@ -254,12 +254,12 @@ const options = [
 - `isOpen` (boolean, opcional): Estado de apertura del dropdown (manejado internamente)
 - `setIsOpen` (function, opcional): Función para controlar el estado de apertura (manejado internamente)
 
-### ProgressBar_Template
+### ProgressBar
 
 Barra de progreso personalizable con soporte para porcentajes, iconos y estados múltiples.
 
 ```js
-import { ProgressBar_Template } from 'udev_ultime_native';
+import { ProgressBar } from 'udev_ultime_native';
 
 const statusBars = [
   { color: '#ff4444', status: 'Bajo', progress: 25 },
@@ -268,7 +268,7 @@ const statusBars = [
   { color: '#0088ff', status: 'Completo', progress: 100 },
 ];
 
-<ProgressBar_Template
+<ProgressBar
   progress={75}
   height_bar={40}
   bg_color_progress="#4CAF50"
