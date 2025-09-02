@@ -1,12 +1,21 @@
 # udev_ultime_native
 
-Librería de componentes UI para React Native que incluye botones personalizables, campos de texto, áreas de texto, campos de contraseña, menús desplegables y barras de progreso.
+Librería de componentes UI optimizada para React Native que ofrece una colección completa de elementos de interfaz listos para usar: botones personalizables con múltiples tipos de interacción, campos de texto avanzados con soporte para iconos y validación, áreas de texto multilínea, campos de contraseña con visibilidad controlada, menús desplegables dinámicos y barras de progreso configurables. Diseñada con TypeScript para mejor tipado y rendimiento optimizado.
 
 ## Installation
 
 ```sh
 npm install udev_ultime_native
 ```
+
+## Versión Actual: 3.3.0
+
+### Cambios Recientes (v3.3.0)
+
+- ✅ **Optimización de interfaces**: Eliminación de propiedades no utilizadas en `InputText_Props`
+- ✅ **Limpieza de código**: Removed unused pointer, responder, touch, y scroll event handlers
+- ✅ **Mejor rendimiento**: Interfaces más ligeras y componentes optimizados
+- ✅ **Documentación actualizada**: Props sincronizadas con la implementación real
 
 ## Componentes
 
@@ -33,9 +42,20 @@ import { Button } from 'udev_ultime_native';
 **Props:**
 
 - `title` (string): Texto del botón
-- `type_button` ('TouchableOpacity' | 'Pressable' | 'TouchableHighlight'): Tipo de componente de botón
+- `type_button` ('TouchableOpacity' | 'Pressable' | 'TouchableHighlight', opcional): Tipo de componente de botón
 - `onPress` (function, opcional): Función ejecutada al presionar
 - `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente
+- `onPressIn` (function, opcional): Función ejecutada al iniciar presión
+- `onPressOut` (function, opcional): Función ejecutada al finalizar presión
+- `onShowUnderlay` (function, opcional): Función ejecutada al mostrar underlay (TouchableHighlight)
+- `onHideUnderlay` (function, opcional): Función ejecutada al ocultar underlay (TouchableHighlight)
+- `onAccessibilityAction` (function, opcional): Función para acciones de accesibilidad
+- `onAccessibilityEscape` (function, opcional): Función para escape de accesibilidad
+- `onAccessibilityTap` (function, opcional): Función para tap de accesibilidad
+- `onBlur` (function, opcional): Función ejecutada al perder foco
+- `onFocus` (function, opcional): Función ejecutada al ganar foco
+- `onLayout` (function, opcional): Función ejecutada al cambiar layout
+- `onMagicTap` (function, opcional): Función para magic tap de accesibilidad
 - `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón (tiene estilos por defecto)
 - `style_text` (StyleProp\<TextStyle>, opcional): Estilos del texto (tiene estilos por defecto)
 - `iconLeft` (JSX.Element, opcional): Icono a la izquierda del texto
@@ -72,6 +92,11 @@ import { InputText } from 'udev_ultime_native';
 - `secureTextEntry` (boolean, opcional): Modo contraseña
 - `editable` (boolean, opcional): Si el campo es editable
 - `multiline` (boolean, opcional): Soporte para múltiples líneas
+- `numberOfLines` (number, opcional): Número de líneas para el input
+- `readOnly` (boolean, opcional): Campo de solo lectura
+- `clearTextOnFocus` (boolean, opcional): Limpiar texto al enfocar
+- `selectTextOnFocus` (boolean, opcional): Seleccionar texto al enfocar
+- `showSoftInputOnFocus` (boolean, opcional): Mostrar teclado al enfocar
 - `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
 - `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto)
 - `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
@@ -82,6 +107,25 @@ import { InputText } from 'udev_ultime_native';
 - `setShowPassword` (function, opcional): Función para controlar visibilidad de contraseña
 - `ShowPassword` (boolean, opcional): Estado de visibilidad de contraseña
 - `label` (JSX.Element, opcional): Etiqueta o label del campo
+- `onFocus` (function, opcional): Función ejecutada al ganar foco
+- `onBlur` (function, opcional): Función ejecutada al perder foco
+- `onLayout` (function, opcional): Función ejecutada al cambiar layout
+- `onSubmitEditing` (function, opcional): Función ejecutada al enviar
+- `onKeyPress` (function, opcional): Función ejecutada al presionar tecla
+- `onChange` (function, opcional): Función ejecutada al cambiar
+- `onContentSizeChange` (function, opcional): Función ejecutada al cambiar tamaño del contenido
+- `onEndEditing` (function, opcional): Función ejecutada al terminar edición
+- `onSelectionChange` (function, opcional): Función ejecutada al cambiar selección
+- `onTextInput` (function, opcional): Función ejecutada en input de texto
+- `onPress` (function, opcional): Función ejecutada al presionar
+- `onPressIn` (function, opcional): Función ejecutada al iniciar presión
+- `onPressOut` (function, opcional): Función ejecutada al finalizar presión
+- `onAccessibilityAction` (function, opcional): Función para acciones de accesibilidad
+- `onAccessibilityEscape` (function, opcional): Función para escape de accesibilidad
+- `onAccessibilityTap` (function, opcional): Función para tap de accesibilidad
+- `onMagicTap` (function, opcional): Función para magic tap de accesibilidad
+
+**Nota:** En la versión 3.3.0, se optimizaron las props eliminando eventos no utilizados para mejor rendimiento.
 
 ### InputPassword
 
@@ -113,7 +157,7 @@ import { InputPassword } from 'udev_ultime_native';
 - `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
 - `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
 
-**Nota:** El estado de visibilidad de contraseña (`ShowPassword`) ahora se maneja internamente por el componente, no necesitas manejarlo externamente.
+**Nota:** El estado de visibilidad de contraseña (`ShowPassword`) se maneja internamente por el componente. En la versión 3.3.0, se optimizaron las props eliminando eventos no utilizados.
 
 ### InputTextarea
 
@@ -139,11 +183,34 @@ import { InputTextarea } from 'udev_ultime_native';
 - `value` (string, opcional): Valor del campo de texto
 - `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
 - `placeholder` (string, opcional): Texto de placeholder
+- `numberOfLines` (number, opcional): Número de líneas para el textarea
+- `readOnly` (boolean, opcional): Campo de solo lectura
+- `clearTextOnFocus` (boolean, opcional): Limpiar texto al enfocar
+- `selectTextOnFocus` (boolean, opcional): Seleccionar texto al enfocar
+- `showSoftInputOnFocus` (boolean, opcional): Mostrar teclado al enfocar
 - `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
 - `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
 - `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto)
 - `iconLeft` (JSX.Element, opcional): Icono a la izquierda
 - `iconRight` (JSX.Element, opcional): Icono a la derecha
+- `onFocus` (function, opcional): Función ejecutada al ganar foco
+- `onBlur` (function, opcional): Función ejecutada al perder foco
+- `onLayout` (function, opcional): Función ejecutada al cambiar layout
+- `onSubmitEditing` (function, opcional): Función ejecutada al enviar
+- `onKeyPress` (function, opcional): Función ejecutada al presionar tecla
+- `onChange` (function, opcional): Función ejecutada al cambiar
+- `onContentSizeChange` (function, opcional): Función ejecutada al cambiar tamaño del contenido
+- `onEndEditing` (function, opcional): Función ejecutada al terminar edición
+- `onSelectionChange` (function, opcional): Función ejecutada al cambiar selección
+- `onPress` (function, opcional): Función ejecutada al presionar
+- `onPressIn` (function, opcional): Función ejecutada al iniciar presión
+- `onPressOut` (function, opcional): Función ejecutada al finalizar presión
+- `onAccessibilityAction` (function, opcional): Función para acciones de accesibilidad
+- `onAccessibilityEscape` (function, opcional): Función para escape de accesibilidad
+- `onAccessibilityTap` (function, opcional): Función para tap de accesibilidad
+- `onMagicTap` (function, opcional): Función para magic tap de accesibilidad
+
+**Nota:** En la versión 3.3.0, se optimizaron las props eliminando eventos no utilizados (pointer, responder, touch, scroll events) para mejor rendimiento.
 
 ### DropDown
 
