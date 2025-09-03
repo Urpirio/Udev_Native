@@ -5,20 +5,20 @@ Librería de componentes UI optimizada para React Native que ofrece una colecci�
 ## Installation
 
 ```sh
-npm install udev_ultime_native
+npm install udev_ultime_native react-native-reanimated
 ```
 
-## Versión Actual: 3.5.0
+## Versión Actual: 3.6.1
 
-### Cambios Recientes (v3.5.0)
+### Cambios Recientes (v3.6.1)
 
-- ✅ **Nuevos componentes añadidos**: `Card_Simple` y `FloatingButton`
-- ✅ **Componente Card_Simple**: Tarjeta personalizable con imagen, título, descripción y botón
-- ✅ **Componente FloatingButton**: Botón flotante con opciones expandibles y animaciones
-- ✅ **Mejoras en exportaciones**: Todos los componentes disponibles desde el índice principal
-- ✅ **Dependencias actualizadas**: Integración con `react-native-reanimated` para animaciones
-- ✅ **Optimización de interfaces**: Eliminación de propiedades no utilizadas en versiones anteriores
-- ✅ **Mejor rendimiento**: Interfaces más ligeras y componentes optimizados
+- ✅ **Corrección de errores críticos**: Solucionados problemas de compatibilidad con Expo y React Native
+- ✅ **Optimización de dependencias**: `react-native-reanimated` movido a `peerDependencies` para mejor compatibilidad
+- ✅ **Componente Card_Simple mejorado**: Eliminado `boxShadow` inválido, agregadas sombras nativas de React Native
+- ✅ **FloatingButton optimizado**: Corregidos errores de renderizado con React.Fragment
+- ✅ **Mejor soporte para Expo**: Configuración de Babel mejorada para `react-native-reanimated`
+- ✅ **Nuevos componentes estables**: `Card_Simple` y `FloatingButton` completamente funcionales
+- ✅ **Documentación actualizada**: Ejemplos y props sincronizadas con la implementación actual
 
 ## Componentes
 
@@ -275,7 +275,7 @@ import { ProgressBar } from 'udev_ultime_native';
 
 ### Card_Simple
 
-Tarjeta simple y elegante con imagen, título, descripción y botón personalizable.
+Tarjeta simple y elegante con imagen, título, descripción y botón personalizable. Optimizada para React Native con sombras nativas.
 
 ```js
 import { Card_Simple } from 'udev_ultime_native';
@@ -285,7 +285,14 @@ import { Card_Simple } from 'udev_ultime_native';
   description="Esta es una descripción de ejemplo para la tarjeta"
   imageUri="https://ejemplo.com/imagen.jpg"
   text_button="Ver más"
-  style_container={{ margin: 10 }}
+  style_container={{ 
+    margin: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3
+  }}
 />
 ```
 
@@ -297,14 +304,14 @@ import { Card_Simple } from 'udev_ultime_native';
 - `text_button` (string, opcional): Texto del botón (por defecto 'Click Me')
 - `style_title` (StyleProp\<TextStyle>, opcional): Estilos del título
 - `style_description` (StyleProp\<TextStyle>, opcional): Estilos de la descripción
-- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal (tiene estilos por defecto)
-- `style_image` (StyleProp\<ImageStyle>, opcional): Estilos de la imagen
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal (ancho fijo 300px por defecto)
+- `style_image` (StyleProp\<ImageStyle>, opcional): Estilos de la imagen (200px altura por defecto)
 - `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del botón
 - `style_text_button` (StyleProp\<TextStyle>, opcional): Estilos del texto del botón
 - `style_container_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón
 - `Button` (JSX.Element, opcional): Botón personalizado para reemplazar el por defecto
 
-**Nota:** La tarjeta tiene un diseño responsivo con ancho fijo de 300px y sombra por defecto. El título se trunca automáticamente después de 25 caracteres.
+**Nota:** La tarjeta usa un `Pressable` interno con estilos optimizados. El título se trunca automáticamente después de 25 caracteres. Las sombras están optimizadas para iOS (shadowColor, shadowOffset, shadowOpacity, shadowRadius) y Android (elevation).
 
 ### FloatingButton
 
@@ -356,7 +363,27 @@ import { FloatingButton } from 'udev_ultime_native';
 npm install udev_ultime_native react-native-reanimated
 ```
 
-**Importante:** Para usar `FloatingButton`, es necesario instalar y configurar `react-native-reanimated` siguiendo la [documentación oficial](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation).
+**Importante:**
+
+- Para usar `FloatingButton`, es necesario instalar y configurar `react-native-reanimated` siguiendo la [documentación oficial](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation).
+- **Para proyectos Expo**: Crear `babel.config.js` en la raíz del proyecto:
+
+```js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['react-native-reanimated/plugin'],
+  };
+};
+```
+
+### Compatibilidad
+
+- **react-native-reanimated**: `>=3.0.0`
+- **React**: `>=18.0.0`
+- **React Native**: `>=0.70.0`
+- **Expo**: `>=49.0.0`
 
 ## Uso
 
@@ -491,6 +518,66 @@ export default function App() {
   );
 }
 ```
+
+## Solución de Problemas
+
+### Error: TurboModule method "installTurboModule" called with 0 arguments
+
+Este error suele ocurrir cuando `react-native-reanimated` no está configurado correctamente.
+
+**Solución:**
+
+1. Asegúrate de tener `react-native-reanimated` instalado:
+
+   ```sh
+   npm install react-native-reanimated
+   ```
+
+2. Configura `babel.config.js`:
+
+   ```js
+   module.exports = function (api) {
+     api.cache(true);
+     return {
+       presets: ['babel-preset-expo'], // o ['@react-native/babel-preset'] para RN CLI
+       plugins: ['react-native-reanimated/plugin'], // DEBE ser el último plugin
+     };
+   };
+   ```
+
+3. Limpia la caché y reinicia:
+
+   ```sh
+   npx expo start --clear  # Para Expo
+   # o
+   npx react-native start --reset-cache  # Para RN CLI
+   ```
+
+### Error: Route "./index.tsx" is missing the required default export
+
+**Solución:**
+Asegúrate de exportar tu componente como `default`:
+
+```tsx
+export default function Index() {
+  // tu código
+}
+```
+
+### Error: Invalid prop `style` supplied to `React.Fragment`
+
+Este error está solucionado en la versión 3.6.1. Si persiste:
+
+1. Actualiza a la versión más reciente: `npm install udev_ultime_native@latest`
+2. Limpia node_modules: `rm -rf node_modules && npm install`
+
+### Incompatibilidad de versiones
+
+Si experimentas problemas de compatibilidad, verifica las versiones:
+
+- `react-native-reanimated`: `>=3.0.0`
+- `react`: `>=18.0.0`
+- `react-native`: `>=0.70.0`
 
 ## Contributing
 

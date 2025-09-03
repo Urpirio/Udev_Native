@@ -5,20 +5,20 @@ Librería de componentes UI optimizada para React Native que ofrece una colecci�
 ## Installation
 
 ```sh
-npm install udev_ultime_native
+npm install udev_ultime_native react-native-reanimated
 ```
 
-## Versión Actual: 3.5.0
+## Versión Actual: 3.6.1
 
-### Cambios Recientes (v3.5.0)
+### Cambios Recientes (v3.6.1)
 
-- ✅ **Nuevos componentes añadidos**: `Card_Simple` y `FloatingButton`
-- ✅ **Componente Card_Simple**: Tarjeta personalizable con imagen, título, descripción y botón
-- ✅ **Componente FloatingButton**: Botón flotante con opciones expandibles y animaciones
-- ✅ **Mejoras en exportaciones**: Todos los componentes disponibles desde el índice principal
-- ✅ **Dependencias actualizadas**: Integración con `react-native-reanimated` para animaciones
-- ✅ **Optimización de interfaces**: Eliminación de propiedades no utilizadas en versiones anteriores
-- ✅ **Mejor rendimiento**: Interfaces más ligeras y componentes optimizados
+- ✅ **Corrección de errores críticos**: Solucionados problemas de compatibilidad con Expo y React Native
+- ✅ **Optimización de dependencias**: `react-native-reanimated` movido a `peerDependencies` para mejor compatibilidad
+- ✅ **Componente Card_Simple mejorado**: Eliminado `boxShadow` inválido, agregadas sombras nativas de React Native
+- ✅ **FloatingButton optimizado**: Corregidos errores de renderizado con React.Fragment
+- ✅ **Mejor soporte para Expo**: Configuración de Babel mejorada para `react-native-reanimated`
+- ✅ **Nuevos componentes estables**: `Card_Simple` y `FloatingButton` completamente funcionales
+- ✅ **Documentación actualizada**: Ejemplos y props sincronizadas con la implementación actual
 
 ## Componentes
 
