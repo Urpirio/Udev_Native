@@ -6,3 +6,5 @@ export { InputTextarea } from './Components/InputTextarea';
 export { DropDown } from './Components/DropDown';
 export { InputText } from './Components/InputText';
 export { ProgressBar } from './Components/ProgressBar';
+export { Card_Simple } from './Components/Card_Simple';
+export { FloatingButton } from './Components/FloatingButton';
