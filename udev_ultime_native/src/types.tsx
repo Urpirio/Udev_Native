@@ -1,4 +1,4 @@
-import type { Dispatch, JSX, ReactNode, SetStateAction } from 'react';
+import type { Dispatch, JSX, SetStateAction } from 'react';
 import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export interface Button_Props {
@@ -122,11 +122,11 @@ export interface Card_Simple_Props {
 }
 
 export interface FloatingButtonProps {
-  icon_hide: ReactNode;
-  icon_show?: ReactNode;
+  icon_hide: JSX.Element;
+  icon_show?: JSX.Element;
   Data_Button?: {
-    icon: ReactNode;
-    onPress: () => void;
+    icon?: JSX.Element;
+    onPress?: () => void;
     style_button?: StyleProp<ViewStyle>;
     onLongPress?: () => void;
   }[];
