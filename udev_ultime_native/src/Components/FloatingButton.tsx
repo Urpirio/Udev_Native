@@ -8,7 +8,6 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { useState } from "react";
-
 import type { FloatingButtonProps } from "../types";
 
 export const FloatingButton = ({
@@ -104,7 +103,7 @@ export const FloatingButton = ({
                     item?.style_button,
                   ]}
                 >
-                  {item?.icon ? item.icon : null}
+                  {item?.icon ? item?.icon : null}
                 </TouchableOpacity>
               </Animated.View>
             );
@@ -128,7 +127,7 @@ export const FloatingButton = ({
           style_floating_button,
         ]}
       >
-        {isOpen ? icon_show : icon_hide}
+        {isOpen ? (icon_show || icon_hide) : icon_hide}
       </TouchableOpacity>
     </View>
   );
