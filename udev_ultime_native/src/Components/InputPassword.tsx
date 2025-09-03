@@ -1,6 +1,6 @@
 import type { InputText_Props } from '../types';
 import { useState } from 'react';
-import { View, TextInput, TouchableOpacity } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 
 export function InputPassword({
   iconPasswordShow,
@@ -52,7 +52,7 @@ export function InputPassword({
       }
     >
       <TextInput
-        style={style_input ? style_input : { width: '80%' }}
+        style={[{ width: '80%' }, style_input]}
         secureTextEntry={ShowPassword}
         value={value}
         onChangeText={onChangeText}
@@ -77,7 +77,7 @@ export function InputPassword({
         selectTextOnFocus={selectTextOnFocus}
         showSoftInputOnFocus={showSoftInputOnFocus}
         numberOfLines={numberOfLines}
-        placeholder={placeholder}
+        placeholder={placeholder ? placeholder : 'Enter your password'}
         placeholderTextColor={
           placeholderTextColor ? placeholderTextColor : 'gray'
         }
@@ -87,7 +87,17 @@ export function InputPassword({
           setShowPassword ? setShowPassword(!ShowPassword) : null
         }
       >
-        {ShowPassword ? iconPasswordHide : iconPasswordShow}
+        {ShowPassword ? (
+          iconPasswordHide ? (
+            iconPasswordHide
+          ) : (
+            <Text>Hide</Text>
+          )
+        ) : iconPasswordShow ? (
+          iconPasswordShow
+        ) : (
+          <Text>Show</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
