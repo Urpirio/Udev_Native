@@ -7,11 +7,13 @@ import {
   InputPassword,
   InputText,
   InputTextarea,
-  ProgressBar
+  ProgressBar,
+  FloatingButton,
+  Card_Simple,
+  // Card_Simple,
 } from "udev_ultime_native";
 
-
-export default function index() {
+export default function Index() {
   const [showPassword, setShowPassword] = useState(true);
   const [DropDownValue, setDropdownValue] = useState<
     string | number | undefined
@@ -23,29 +25,28 @@ export default function index() {
     >
       <View
         style={{
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "flex-end",
+          alignItems: "flex-end",
           gap: 10,
+          height: "100%",
           width: "100%",
           paddingHorizontal: 20,
+          borderWidth: 1,
+          paddingBottom: 50,
         }}
       >
-        <Text>index</Text>
-        <Button
-          title="Press me"
-          onPress={() => alert("Button pressed!")}
-          type_button="Pressable"
-        />
-        <InputPassword
-          placeholder="Enter your password"
+        {/* <Text>index</Text> */}
+        {/* <Button title="Click Me" /> */}
+        {/* <InputPassword
+          // placeholder="Enter your password"
           style_input={{ width: "80%" }}
-          placeholderTextColor="gray"
+          // placeholderTextColor="gray"
           setShowPassword={setShowPassword}
           ShowPassword={showPassword}
           iconPasswordHide={<Text>Show</Text>}
           iconPasswordShow={<Text>Hide</Text>}
-        />
-        <InputText
+        /> */}
+        {/* <InputText
           placeholder="Enter your text"
           style_container={{
             borderWidth: 1,
@@ -56,9 +57,9 @@ export default function index() {
           }}
           style_input={{ width: "80%" }}
           placeholderTextColor="gray"
-        />
-        
-        <InputTextarea
+        /> */}
+
+        {/* <InputTextarea
           placeholder="Enter your textarea"
           style_container={{
             borderWidth: 1,
@@ -69,9 +70,9 @@ export default function index() {
           }}
           style_input={{ width: "80%" }}
           placeholderTextColor="gray"
-        />
+        /> */}
 
-        <DropDown
+        {/* <DropDown
           data_option={[
             { label: "Option 1", value: "Option 1" },
             { label: "Option 2", value: "Option 2" },
@@ -109,10 +110,15 @@ export default function index() {
             borderRadius: 10,
             padding: 10,
           }}
-        />
-        <ProgressBar
-          progress={50}
-          show_percentage={true}
+        /> */}
+        {/* <ProgressBar progress={50} show_percentage={true} /> */}
+        {/* <Card_Simple
+        /> */}
+
+        <Card_Simple
+          imageUri="https://i.pinimg.com/736x/c7/0c/11/c70c1141aca40688b2cfd52b2010edd1.jpg"
+          style_button={{ backgroundColor: "gray" }}
+          
         />
       </View>
     </SafeAreaProvider>
