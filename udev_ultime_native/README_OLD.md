@@ -1,6 +1,6 @@
 # udev_ultime_native
 
-Librería de componentes UI optimizada para React Native que ofrece una colección completa de elementos de interfaz listos para usar: botones personalizables con múltiples tipos de interacción, campos de texto avanzados con soporte para iconos y validación, áreas de texto multilínea, campos de contraseña con visibilidad controlada, menús desplegables dinámicos, barras de progreso configurables, tarjetas simples y botones flotantes con animaciones. Diseñada con TypeScript para mejor tipado y rendimiento optimizado.
+Librería de componentes UI optimizada para React Native que ofrece una colección completa de elementos de interfaz listos para usar: botones personalizables con múltiples tipos de interacción, campos de texto avanzados con soporte para iconos y validación, áreas de texto multilínea, campos de contraseña con visibilidad controlada, menús desplegables dinámicos y barras de progreso configurables. Diseñada con TypeScript para mejor tipado y rendimiento optimizado.
 
 ## Installation
 
@@ -160,9 +160,235 @@ import { InputPassword } from 'udev_ultime_native';
 - `iconPasswordShow` (JSX.Element, opcional): Icono para mostrar contraseña
 - `iconPasswordHide` (JSX.Element, opcional): Icono para ocultar contraseña
 
-**Nota:** El estado de visibilidad de contraseña (`ShowPassword`) se maneja internamente por el componente. En la versión 3.3.0, se optimizaron las props eliminando eventos no utilizados.
+**Nota:** El estado de visibilidad de contraseña (`ShowPassword`) se maneja internamente por el componente. En la versión 3.5.0, se optimizaron las props eliminando eventos no utilizados.
 
 ### InputTextarea
+
+Campo de texto multilínea optimizado para entradas de texto extensas con soporte completo para eventos y personalización.
+
+```js
+import { InputTextarea } from 'udev_ultime_native';
+
+<InputTextarea
+  placeholder="Escribe tu mensaje aquí..."
+  numberOfLines={4}
+  style_container={{
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    padding: 10
+  }}
+/>
+```
+
+**Props:**
+
+- `value` (string, opcional): Valor del campo de texto
+- `onChangeText` (function, opcional): Función ejecutada al cambiar el texto
+- `placeholder` (string, opcional): Texto de placeholder
+- `placeholderTextColor` (string, opcional): Color del placeholder (por defecto 'gray')
+- `style_input` (StyleProp\<TextStyle>, opcional): Estilos del input (tiene estilos por defecto)
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor (tiene estilos por defecto)
+- `iconLeft` (JSX.Element, opcional): Icono a la izquierda
+- `iconRight` (JSX.Element, opcional): Icono a la derecha
+- `numberOfLines` (number, opcional): Número de líneas para el textarea
+- `onFocus` (function, opcional): Función ejecutada al ganar foco
+- `onBlur` (function, opcional): Función ejecutada al perder foco
+- `onLayout` (function, opcional): Función ejecutada al cambiar layout
+- `onSubmitEditing` (function, opcional): Función ejecutada al enviar
+- `onKeyPress` (function, opcional): Función ejecutada al presionar tecla
+- `onChange` (function, opcional): Función ejecutada al cambiar
+- `onContentSizeChange` (function, opcional): Función ejecutada al cambiar tamaño del contenido
+- `onEndEditing` (function, opcional): Función ejecutada al terminar edición
+- `onSelectionChange` (function, opcional): Función ejecutada al cambiar selección
+- `onAccessibilityAction` (function, opcional): Función para acciones de accesibilidad
+- `onAccessibilityEscape` (function, opcional): Función para escape de accesibilidad
+- `onAccessibilityTap` (function, opcional): Función para tap de accesibilidad
+- `onMagicTap` (function, opcional): Función para magic tap de accesibilidad
+- `onPress` (function, opcional): Función ejecutada al presionar
+- `onPressIn` (function, opcional): Función ejecutada al iniciar presión
+- `onPressOut` (function, opcional): Función ejecutada al finalizar presión
+- `readOnly` (boolean, opcional): Campo de solo lectura
+- `clearTextOnFocus` (boolean, opcional): Limpiar texto al enfocar
+- `selectTextOnFocus` (boolean, opcional): Seleccionar texto al enfocar
+- `showSoftInputOnFocus` (boolean, opcional): Mostrar teclado al enfocar
+
+**Nota:** El componente está optimizado para texto multilínea con `multiline={true}` habilitado por defecto.
+
+### DropDown
+
+Componente de menú desplegable personalizable con opciones dinámicas y estilos configurables.
+
+```js
+import { DropDown } from 'udev_ultime_native';
+
+<DropDown
+  data_option={[
+    { label: "Opción 1", value: "option1" },
+    { label: "Opción 2", value: "option2" },
+    { label: "Opción 3", value: "option3" }
+  ]}
+  placeholder="Selecciona una opción"
+  setValue={setSelectedValue}
+  Value={selectedValue}
+/>
+```
+
+**Props:**
+
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal (tiene estilos por defecto)
+- `style_container_option` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor de opciones
+- `style_button_option` (StyleProp\<ViewStyle>, opcional): Estilos de cada botón de opción
+- `style_text_option` (StyleProp\<TextStyle>, opcional): Estilos del texto de opciones
+- `style_text_placeholder` (StyleProp\<TextStyle>, opcional): Estilos del texto placeholder
+- `style_text_selected` (StyleProp\<TextStyle>, opcional): Estilos del texto de la opción seleccionada
+- `style_buttonOpen_option` (StyleProp\<ViewStyle>, opcional): Estilos del botón para abrir opciones
+- `setValue` (function, opcional): Función para establecer el valor seleccionado
+- `Value` (string | number | undefined, opcional): Valor actualmente seleccionado
+- `data_option` (array, opcional): Array de objetos con `label` y `value` para las opciones
+- `placeholder` (string, opcional): Texto mostrado cuando no hay selección
+- `icon` (JSX.Element, opcional): Icono mostrado junto al texto del botón
+
+### ProgressBar
+
+Barra de progreso altamente personalizable con soporte para iconos, porcentajes y estados coloreados.
+
+```js
+import { ProgressBar } from 'udev_ultime_native';
+
+<ProgressBar
+  progress={75}
+  show_percentage={true}
+  bg_color_progress="blue"
+  bg_container_bar="#f0f0f0"
+  height_bar={20}
+/>
+```
+
+**Props:**
+
+- `progress` (number, requerido): Porcentaje de progreso (0-100)
+- `height_bar` (number, opcional): Altura de la barra (por defecto 30)
+- `bg_color_progress` (string, opcional): Color de la barra de progreso
+- `bg_container_bar` (string, opcional): Color del contenedor de la barra (por defecto '#f8f9fa')
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal
+- `style_progress_bar` (StyleProp\<ViewStyle>, opcional): Estilos de la barra de progreso
+- `show_percentage` (boolean, opcional): Mostrar el porcentaje como texto
+- `text_style_percentage` (StyleProp\<TextStyle>, opcional): Estilos del texto de porcentaje
+- `text_percentage` (JSX.Element, opcional): Elemento personalizado para mostrar el porcentaje
+- `iconRight` (JSX.Element, opcional): Icono a la derecha del porcentaje
+- `iconLeft` (JSX.Element, opcional): Icono a la izquierda del porcentaje
+- `status_bar` (array, opcional): Array de objetos con `color`, `status` y `progress` para estados coloreados
+
+### Card_Simple
+
+Tarjeta simple y elegante con imagen, título, descripción y botón personalizable.
+
+```js
+import { Card_Simple } from 'udev_ultime_native';
+
+<Card_Simple
+  title="Mi Tarjeta"
+  description="Esta es una descripción de ejemplo para la tarjeta"
+  imageUri="https://ejemplo.com/imagen.jpg"
+  text_button="Ver más"
+  style_container={{ margin: 10 }}
+/>
+```
+
+**Props:**
+
+- `title` (string, opcional): Título de la tarjeta (por defecto 'Title Simple')
+- `description` (string, opcional): Descripción de la tarjeta (tiene texto por defecto)
+- `imageUri` (string, opcional): URL de la imagen (tiene imagen por defecto)
+- `text_button` (string, opcional): Texto del botón (por defecto 'Click Me')
+- `style_title` (StyleProp\<TextStyle>, opcional): Estilos del título
+- `style_description` (StyleProp\<TextStyle>, opcional): Estilos de la descripción
+- `style_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal (tiene estilos por defecto)
+- `style_image` (StyleProp\<ImageStyle>, opcional): Estilos de la imagen
+- `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del botón
+- `style_text_button` (StyleProp\<TextStyle>, opcional): Estilos del texto del botón
+- `style_container_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón
+- `Button` (JSX.Element, opcional): Botón personalizado para reemplazar el por defecto
+
+**Nota:** La tarjeta tiene un diseño responsivo con ancho fijo de 300px y sombra por defecto. El título se trunca automáticamente después de 25 caracteres.
+
+### FloatingButton
+
+Botón flotante con opciones expandibles y animaciones suaves usando react-native-reanimated.
+
+```js
+import { FloatingButton } from 'udev_ultime_native';
+
+<FloatingButton
+  icon_hide={<Icon name="plus" />}
+  icon_show={<Icon name="close" />}
+  Data_Button={[
+    {
+      icon: <Icon name="home" />,
+      onPress: () => console.log('Home pressed'),
+      style_button: { backgroundColor: 'blue' }
+    },
+    {
+      icon: <Icon name="settings" />,
+      onPress: () => console.log('Settings pressed'),
+      style_button: { backgroundColor: 'green' }
+    }
+  ]}
+  SelectFun_onPress="Data_Button"
+  SelectFun_onLongPress="onLongPress"
+  timing_animation_buttons={400}
+/>
+```
+
+**Props:**
+
+- `icon_hide` (ReactNode, requerido): Icono mostrado cuando el menú está cerrado
+- `icon_show` (ReactNode, opcional): Icono mostrado cuando el menú está abierto
+- `Data_Button` (array, opcional): Array de objetos con `icon`, `onPress`, `style_button` y `onLongPress` para las opciones
+- `timing_animation_buttons` (number, opcional): Duración de las animaciones en milisegundos (por defecto 500ms para mostrar, 300ms para ocultar)
+- `style_floating_button` (StyleProp\<ViewStyle>, opcional): Estilos del botón principal (tiene estilos por defecto)
+- `style_container_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor de opciones
+- `style_main_container` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor principal
+- `onPress` (function, opcional): Función ejecutada al presionar el botón principal
+- `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente el botón principal
+- `SelectFun_onPress` ('onPress' | 'Data_Button', requerido): Selecciona qué función ejecutar al presionar (función personalizada o mostrar/ocultar opciones)
+- `SelectFun_onLongPress` ('onLongPress' | 'Data_Button', requerido): Selecciona qué función ejecutar al presionar prolongadamente
+
+**Nota:** El componente utiliza `react-native-reanimated` para animaciones suaves de opacidad y escala. Las opciones aparecen con animación desde el botón principal hacia arriba.
+
+## Instalación de Dependencias
+
+```sh
+npm install udev_ultime_native react-native-reanimated
+```
+
+**Importante:** Para usar `FloatingButton`, es necesario instalar y configurar `react-native-reanimated` siguiendo la [documentación oficial](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation).
+
+## Uso
+
+```js
+import {
+  Button,
+  InputText,
+  InputPassword,
+  InputTextarea,
+  DropDown,
+  ProgressBar,
+  Card_Simple,
+  FloatingButton
+} from 'udev_ultime_native';
+
+// Usar cualquiera de los componentes en tu aplicación
+<Button title="Mi Botón" onPress={() => console.log('Presionado')} />
+<InputText placeholder="Escribe aquí..." />
+<FloatingButton 
+  icon_hide={<YourIcon />}
+  Data_Button={[...]}
+  SelectFun_onPress="Data_Button"
+  SelectFun_onLongPress="onLongPress"
+/>
+```
 
 Campo de texto multilínea para entradas de texto más largas con estilos por defecto.
 
