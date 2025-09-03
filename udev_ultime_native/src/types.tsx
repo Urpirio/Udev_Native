@@ -1,5 +1,5 @@
-import type { Dispatch, JSX, SetStateAction } from 'react';
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { Dispatch, JSX, ReactNode, SetStateAction } from 'react';
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export interface Button_Props {
   title: string;
@@ -85,9 +85,9 @@ export interface DropDown_Props {
   setIsOpen?: Dispatch<SetStateAction<boolean>>;
   style_buttonOpen_option?: StyleProp<ViewStyle>;
   icon?: JSX.Element | null;
-};
+}
 
- export interface ProgressBar_Props {
+export interface ProgressBar_Props {
   progress: number;
   height_bar?: number;
   bg_color_progress?: string;
@@ -104,7 +104,38 @@ export interface DropDown_Props {
   text_style_percentage?: StyleProp<TextStyle>;
   text_percentage?: JSX.Element | null;
   style_progress_bar?: StyleProp<ViewStyle>;
-};
+}
 
+export interface Card_Simple_Props {
+  title?: string;
+  imageUri?: string;
+  description?: string;
+  style_title?: StyleProp<TextStyle>;
+  style_container?: StyleProp<ViewStyle>;
+  style_image?: StyleProp<ImageStyle>;
+  style_description?: StyleProp<TextStyle>;
+  style_button?: StyleProp<ViewStyle>;
+  Button?: JSX.Element | null;
+  style_text_button?: StyleProp<TextStyle>;
+  style_container_button?: StyleProp<ViewStyle>;
+  text_button?: string;
+}
 
-
+export interface FloatingButtonProps {
+  icon_hide: ReactNode;
+  icon_show?: ReactNode;
+  Data_Button?: {
+    icon: ReactNode;
+    onPress: () => void;
+    style_button?: StyleProp<ViewStyle>;
+    onLongPress?: () => void;
+  }[];
+  timing_animation_buttons?: number;
+  style_container_button?: StyleProp<ViewStyle>;
+  style_floating_button?: StyleProp<ViewStyle>;
+  style_main_container?: StyleProp<ViewStyle>;
+  onLongPress?: () => void;
+  onPress?: () => void;
+  SelectFun_onPress: "onPress" | "Data_Button";
+  SelectFun_onLongPress: "onLongPress" | "Data_Button";
+}
