@@ -1,5 +1,5 @@
-import { View, Text, Image } from 'react-native';
-import { Button } from 'react-native-udev_ultime_native';
+import { View, Text, Image, Pressable } from 'react-native';
+// import { Button } from 'udev_ultime_native';
 import type { Card_Simple_Props } from '../types';
 
 export const Card_Simple = ({
@@ -23,7 +23,6 @@ export const Card_Simple = ({
           borderWidth: 1,
           width: 300,
           borderRadius: 10,
-          boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
         },
         style_container,
       ]}
@@ -47,8 +46,8 @@ export const Card_Simple = ({
       <View style={{ padding: 10 }}>
         <Text style={[{ fontSize: 18, fontWeight: 'bold' }, style_title]}>
           {title
-            ? title.split('').length > 25
-              ? title.slice(0, 25) + '...'
+            ? title?.split('')?.length > 25
+              ? title?.slice(0, 25) + '...'
               : title
             : 'Title Simple'}
         </Text>
@@ -62,18 +61,29 @@ export const Card_Simple = ({
         {ButtonProp ? (
           ButtonProp
         ) : (
-          <Button
-            title={text_button ? text_button : 'Click Me'}
-            type_button="Pressable"
-            style_button={[
-              { width: '100%', height: 40, backgroundColor: 'black' },
+          <Pressable
+            onPress={() => console.log('Button pressed')}
+            style={[
+              { 
+                width: '100%', 
+                height: 40, 
+                backgroundColor: 'black',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 5,
+              },
               style_button,
             ]}
-            style_text={[
-              { textAlign: 'center', color: 'white' },
-              style_text_button,
-            ]}
-          />
+          >
+            <Text
+              style={[
+                { textAlign: 'center', color: 'white' },
+                style_text_button,
+              ]}
+            >
+              {text_button ? text_button : 'Click Me'}
+            </Text>
+          </Pressable>
         )}
       </View>
     </View>
