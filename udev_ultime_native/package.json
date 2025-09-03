@@ -1,6 +1,6 @@
 {
   "name": "udev_ultime_native",
-  "version": "3.3.2",
+  "version": "3.5.0",
   "description": "Librería de componentes UI optimizada para React Native con TypeScript. Incluye botones personalizables, campos de texto avanzados, áreas de texto, campos de contraseña, menús desplegables y barras de progreso configurables.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -150,5 +150,8 @@
     "languages": "js",
     "type": "library",
     "version": "0.53.0"
+  },
+  "dependencies": {
+    "react-native-reanimated": "^4.1.0"
   }
 }
