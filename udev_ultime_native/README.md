@@ -504,4 +504,4 @@ MIT
 
 ---
 
-Made with ❤️ by [UrpirioDev](https://github.com/Urpirio/Udev_Native)
+Made with ❤️ by [UrpirioDev](https://github.com/Urpirio)
