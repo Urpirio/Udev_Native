@@ -8,7 +8,7 @@ Librería de componentes UI optimizada para React Native que ofrece una colecci�
 npm install udev_ultime_native react-native-reanimated
 ```
 
-## Versión Actual: 3.6.1
+## Versión Actual: 3.6.3
 
 ### Cambios Recientes (v3.6.1)
 
