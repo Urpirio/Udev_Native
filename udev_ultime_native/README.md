@@ -362,9 +362,115 @@ import { FloatingButton } from 'udev_ultime_native';
 - `onPress` (function, opcional): Función ejecutada al presionar el botón principal
 - `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente el botón principal
 - `SelectFun_onPress` ('onPress' | 'Data_Button', requerido): Selecciona qué función ejecutar al presionar (función personalizada o mostrar/ocultar opciones)
-- `SelectFun_onLongPress` ('onLongPress' | 'Data_Button', requerido): Selecciona qué función ejecutar al presionar prolongadamente
 
 **Nota:** El componente utiliza `react-native-reanimated` para animaciones suaves de opacidad y escala. Las opciones aparecen con animación desde el botón principal hacia arriba.
+
+### RadioButton
+
+Componente de botón de opción para selección única con diseño personalizable y manejo de estado externo.
+
+```js
+import { RadioButton } from 'udev_ultime_native';
+
+<RadioButton
+  value="option1"
+  value_selected={selectedValue}
+  label="Primera opción"
+  setValue={setSelectedValue}
+/>
+```
+
+**Props:**
+
+- `value` (string, opcional): Valor único del botón de opción
+- `value_selected` (string | undefined, requerido): Valor actualmente seleccionado
+- `label` (string, opcional): Texto de la etiqueta del botón
+- `setValue` (Dispatch<SetStateAction<string | undefined>>, requerido): Función para actualizar el valor seleccionado
+- `style_container` (object, opcional): Estilos del contenedor principal (con flexDirection row por defecto)
+- `style_label` (object, opcional): Estilos del texto de la etiqueta
+- `style_radio` (object, opcional): Estilos del círculo del botón (20x20px por defecto)
+- `style_point_radio` (object, opcional): Estilos del punto interior cuando está seleccionado (10x10px por defecto)
+
+**Nota:** El componente requiere manejo de estado externo para el valor seleccionado. El diseño incluye un círculo con borde y un punto interior que aparece cuando está seleccionado.
+
+### ButtonBar
+
+Barra de botones que permite elegir entre diferentes tipos de componentes táctiles con estilos unificados.
+
+```js
+import { ButtonBar } from 'udev_ultime_native';
+
+<ButtonBar
+  type_button="TouchableOpacity"
+  onPress={() => console.log('Pressed')}
+  style_button={{ backgroundColor: '#007bff' }}
+/>
+```
+
+**Props:**
+
+- `type_button` ('Pressable' | 'Button' | 'TouchableOpacity' | 'TouchableHighlight', requerido): Tipo de botón a renderizar
+- `onPress` (function, opcional): Función ejecutada al presionar el botón
+- `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente
+- `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón (con flex: 1 por defecto)
+- `style_text` (StyleProp\<ViewStyle>, opcional): Estilos del texto del botón
+
+**Tipos disponibles:**
+
+- **Pressable**: Botón moderno con texto "Pressable"
+- **Button**: Botón nativo de React Native con título "Button"
+- **TouchableOpacity**: Botón con efecto de opacidad y texto "TouchableOpacity"
+- **TouchableHighlight**: Botón con efecto de resaltado y texto "TouchableHighlight"
+
+**Nota:** El contenedor tiene `flexDirection: 'row'` y `justifyContent: 'space-between'` por defecto. Cada botón ocupa el espacio disponible con `flex: 1`.
+
+### TabPanel
+
+Sistema de pestañas horizontal con navegación por scroll y contenido dinámico basado en la pestaña seleccionada.
+
+```js
+import { TabPanel } from 'udev_ultime_native';
+
+<TabPanel
+  Data_Tabs={[
+    {
+      label: "Inicio",
+      description: "Contenido de la pestaña Inicio",
+      value: "home"
+    },
+    {
+      label: "Perfil", 
+      description: "Información del perfil de usuario",
+      value: "profile"
+    }
+  ]}
+  border_tab_selected="#007bff"
+/>
+```
+
+**Props:**
+
+- `Data_Tabs` (array, opcional): Array de objetos con configuración de pestañas
+  - `label` (string, requerido): Texto mostrado en la pestaña
+  - `description` (string | undefined, opcional): Contenido mostrado al seleccionar la pestaña
+  - `value` (string, requerido): Identificador único de la pestaña
+  - `style_description` (StyleProp\<TextStyle>, opcional): Estilos específicos para la descripción de esta pestaña
+- `style_container` (object, opcional): Estilos del contenedor principal (con borde y padding por defecto)
+- `style_tab_container` (object, opcional): Estilos del contenedor de pestañas (con borde inferior por defecto)
+- `style_text_tab` (object, opcional): Estilos del texto de las pestañas
+- `style_description` (object, opcional): Estilos globales de la descripción
+- `border_tab_selected` (string, opcional): Color del borde y texto de la pestaña seleccionada (por defecto '#000000')
+- `border_tab_unselected` (string, opcional): Color del borde y texto de pestañas no seleccionadas (por defecto '#ffffff' y 'gray')
+
+**Características:**
+
+- Navegación horizontal con scroll automático
+- Selección automática de la primera pestaña al cargar
+- Indicador visual con borde inferior en la pestaña activa
+- Contenido dinámico que cambia según la pestaña seleccionada
+- Soporte para scroll horizontal cuando hay muchas pestañas
+
+**Nota:** El componente maneja internamente el estado de la pestaña seleccionada y actualiza automáticamente el contenido mostrado. El diseño es responsivo con scroll horizontal para pestañas que excedan el ancho de la pantalla.
 
 ### LayoutScreen
 
