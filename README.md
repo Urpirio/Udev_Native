@@ -574,9 +574,9 @@ export default function App() {
 
 ## Contributing
 
-- [Development workflow](CONTRIBUTING.md#development-workflow)
-- [Sending a pull request](CONTRIBUTING.md#sending-a-pull-request)
-- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Development workflow](udev_ultime_native/CONTRIBUTING.md#development-workflow)
+- [Sending a pull request](udev_ultime_native/CONTRIBUTING.md#sending-a-pull-request)
+- [Code of conduct](udev_ultime_native/CODE_OF_CONDUCT.md)
 
 ## License
 
