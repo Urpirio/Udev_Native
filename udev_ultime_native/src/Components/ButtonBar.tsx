@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
   type StyleProp,
   type ViewStyle,
+  // type ButtonProps,
 } from 'react-native';
 
 interface ButtonBarProps {
@@ -15,6 +16,7 @@ interface ButtonBarProps {
   onLongPress?: () => void;
   style_button?: StyleProp<ViewStyle>;
   style_text?: StyleProp<ViewStyle>;
+  text?: string | any;
 };
 
 const Type_button = {
@@ -22,7 +24,8 @@ const Type_button = {
     onPress?: () => void,
     onLongPress?: () => void,
     style_button?: StyleProp<ViewStyle>,
-    style_text?: StyleProp<ViewStyle>
+    style_text?: StyleProp<ViewStyle>,
+    text?: string,
   ) => {
     return (
       <Pressable
@@ -37,18 +40,19 @@ const Type_button = {
         onPress={onPress}
         onLongPress={onLongPress}
       >
-        <Text style={[{}, style_text]}>Pressable</Text>
+        <Text style={[{}, style_text]}>{text}</Text>
       </Pressable>
     );
   },
-  Button: (onPress?: () => void) => {
-    return <Button title="Button" onPress={onPress} />;
+  Button: (onPress?: () => void, text?: any) => {
+    return <Button title={text} onPress={onPress} />;
   },
   TouchableOpacity: (
     onPress?: () => void,
     onLongPress?: () => void,
     style_button?: StyleProp<ViewStyle>,
-    style_text?: StyleProp<ViewStyle>
+    style_text?: StyleProp<ViewStyle>,
+    text?: string
   ) => {
     return (
       <TouchableOpacity
@@ -59,7 +63,7 @@ const Type_button = {
         onPress={onPress}
         onLongPress={onLongPress}
       >
-        <Text style={[{}, style_text]}>TouchableOpacity</Text>
+        <Text style={[{}, style_text]}>{text}</Text>
       </TouchableOpacity>
     );
   },
@@ -67,7 +71,8 @@ const Type_button = {
     onPress?: () => void,
     onLongPress?: () => void,
     style_button?: StyleProp<ViewStyle>,
-    style_text?: StyleProp<ViewStyle>
+    style_text?: StyleProp<ViewStyle>,
+    text?: string
   ) => {
     return (
       <TouchableHighlight
@@ -78,7 +83,7 @@ const Type_button = {
         onPress={onPress}
         onLongPress={onLongPress}
       >
-        <Text style={[{}, style_text]}>TouchableHighlight</Text>
+        <Text style={[{}, style_text]}>{text}</Text>
       </TouchableHighlight>
     );
   },
@@ -90,10 +95,11 @@ export function ButtonBar({
   onLongPress,
   style_button,
   style_text,
+  text,
 }: ButtonBarProps) {
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-      {Type_button[type_button](onPress, onLongPress, style_button, style_text)}
+      {Type_button[type_button](onPress, onLongPress, style_button, style_text, text)}
     </View>
   );
 }

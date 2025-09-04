@@ -402,6 +402,7 @@ import { ButtonBar } from 'udev_ultime_native';
 
 <ButtonBar
   type_button="TouchableOpacity"
+  text="Mi Botón Personalizado"
   onPress={() => console.log('Pressed')}
   style_button={{ backgroundColor: '#007bff' }}
 />
@@ -414,15 +415,16 @@ import { ButtonBar } from 'udev_ultime_native';
 - `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente
 - `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón (con flex: 1 por defecto)
 - `style_text` (StyleProp\<ViewStyle>, opcional): Estilos del texto del botón
+- `text` (string | any, opcional): Texto personalizado a mostrar en el botón
 
 **Tipos disponibles:**
 
-- **Pressable**: Botón moderno con texto "Pressable"
-- **Button**: Botón nativo de React Native con título "Button"
-- **TouchableOpacity**: Botón con efecto de opacidad y texto "TouchableOpacity"
-- **TouchableHighlight**: Botón con efecto de resaltado y texto "TouchableHighlight"
+- **Pressable**: Botón moderno con texto personalizable (si no se proporciona `text`, muestra "Pressable")
+- **Button**: Botón nativo de React Native con título personalizable (si no se proporciona `text`, muestra "Button")
+- **TouchableOpacity**: Botón con efecto de opacidad y texto personalizable (si no se proporciona `text`, muestra "TouchableOpacity")
+- **TouchableHighlight**: Botón con efecto de resaltado y texto personalizable (si no se proporciona `text`, muestra "TouchableHighlight")
 
-**Nota:** El contenedor tiene `flexDirection: 'row'` y `justifyContent: 'space-between'` por defecto. Cada botón ocupa el espacio disponible con `flex: 1`.
+**Nota:** El contenedor tiene `flexDirection: 'row'` y `justifyContent: 'space-between'` por defecto. Cada botón ocupa el espacio disponible con `flex: 1`. La propiedad `text` permite personalizar el contenido mostrado en cada tipo de botón.
 
 ### TabPanel
 
