@@ -1,6 +1,7 @@
-import { LayoutScreen } from "@/components/Test_components";
+// import { LayoutScreen } from "@/components/Test_components";
+import { navigate } from "expo-router/build/global-state/routing";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Card_Simple } from "udev_ultime_native";
+import { Card_Simple,LayoutScreen } from "udev_ultime_native";
 
 export default function index() {
   return (
@@ -14,57 +15,43 @@ export default function index() {
       type_BottomBar="Bar_Floating"
       Data_BottomBar={[
         {
-          label: "Home",
-          onPress: () => console.log("Home Pressed"),
-          icon_in: <Text style={{ fontSize: 24 }}>🏠</Text>,
-          icon_out: <Text style={{ fontSize: 24 }}>🏠</Text>,
+          label: "Screen1",
+          icon_in: <Text style={{ fontSize: 24 }}>🔵</Text>,
+          // icon_out: <Text style={{ fontSize: 24 }}>🏠</Text>,
           isInScreen: true,
+          onPress: () => navigate("/Screen1"),
         },
         {
-          label: "Settings",
-          onPress: () => console.log("Settings Pressed"),
-          icon_in: <Text style={{ fontSize: 24 }}>⚙️</Text>,
-          icon_out: <Text style={{ fontSize: 24 }}>⚙️</Text>,
+          label: "Screen2",
+          icon_in: <Text style={{ fontSize: 24 }}>🟢</Text>,
+          // icon_out: <Text style={{ fontSize: 24 }}>🏠</Text>,
           isInScreen: true,
+          onPress: () => navigate("/Screen2"),
         },
         {
-          label: "Noti",
-          onPress: () => console.log("Notifications Pressed"),
-          icon_in: <Text style={{ fontSize: 24 }}>🔔</Text>,
-          icon_out: <Text style={{ fontSize: 24 }}>🔔</Text>,
+          label: "Screen3",
+          icon_in: <Text style={{ fontSize: 24 }}>🟠</Text>,
+          // icon_out: <Text style={{ fontSize: 24 }}>🏠</Text>,
           isInScreen: true,
-        },
-        {
-          label: "perfil",
-          onPress: () => console.log("perfil Pressed"),
-          icon_in: <Text style={{ fontSize: 24 }}>👤</Text>,
-          icon_out: <Text style={{ fontSize: 24 }}>👤</Text>,
-          isInScreen: true,
-        },
-        {
-          label: "search",
-          onPress: () => console.log("search Pressed"),
-          icon_in: <Text style={{ fontSize: 24 }}>🔍</Text>,
-          icon_out: <Text style={{ fontSize: 24 }}>🔍</Text>,
-          isInScreen: true, //USando el Path de Expo router podras mandar un booleano el cula permitira evaluar si es o no la ruta
+          onPress: () => navigate("/Screen3"),
         },
       ]}
 
-      floating_button={
-        <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            height: 60,
-            width: 60,
-            borderRadius: 20,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor:"white"
-          }}
-        >
-          <Text>+</Text>
-        </TouchableOpacity>
-      }
+      // floating_button={
+      //   <TouchableOpacity
+      //     style={{
+      //       borderWidth: 1,
+      //       height: 60,
+      //       width: 60,
+      //       borderRadius: 20,
+      //       justifyContent: "center",
+      //       alignItems: "center",
+      //       backgroundColor:"white"
+      //     }}
+      //   >
+      //     <Text>+</Text>
+      //   </TouchableOpacity>
+      // }
       bodyScreen={
         <View
           style={{
@@ -76,10 +63,7 @@ export default function index() {
             paddingBottom:120,
           }}
         >
-          <Card_Simple/>
-          <Card_Simple/>
-          <Card_Simple/>
-          <Card_Simple/>
+
         </View>
       }
     />

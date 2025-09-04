@@ -8,9 +8,17 @@ Librería de componentes UI optimizada para React Native que ofrece una colecci�
 npm install udev_ultime_native react-native-reanimated react-native-safe-area-context
 ```
 
-## Versión Actual: 3.7.0
+## Versión Actual: 3.8.0
 
-### Cambios Recientes (v3.7.0)
+### Cambios Recientes (v3.8.0)
+
+- ✅ **RadioButton**: Componente de botón de opción con selección única y estilos personalizables
+- ✅ **ButtonBar**: Barra de botones con múltiples tipos de interacción (Pressable, TouchableOpacity, TouchableHighlight)
+- ✅ **TabPanel**: Sistema de pestañas horizontal con descripción dinámica y navegación por scroll
+- ✅ **Mejoras de exportación**: Todos los componentes nuevos exportados desde el índice principal
+- ✅ **TypeScript completo**: Tipado fuerte para todos los componentes nuevos
+
+### Cambios Anteriores (v3.7.0)
 
 - ✅ **LayoutScreen System**: Sistema completo de layouts para estructurar pantallas con topBar, bottomBar y bodyScreen
 - ✅ **Tres tipos de BottomBar**: `Default`, `Bar_Floating`, y `BarWithFloatingButton` con estilos predefinidos
