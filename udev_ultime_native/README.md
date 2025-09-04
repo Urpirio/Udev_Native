@@ -5,20 +5,21 @@ Librería de componentes UI optimizada para React Native que ofrece una colecci�
 ## Installation
 
 ```sh
-npm install udev_ultime_native react-native-reanimated
+npm install udev_ultime_native react-native-reanimated react-native-safe-area-context
 ```
 
-## Versión Actual: 3.6.1
+## Versión Actual: 3.7.0
 
-### Cambios Recientes (v3.6.1)
+### Cambios Recientes (v3.7.0)
 
-- ✅ **Corrección de errores críticos**: Solucionados problemas de compatibilidad con Expo y React Native
-- ✅ **Optimización de dependencias**: `react-native-reanimated` movido a `peerDependencies` para mejor compatibilidad
-- ✅ **Componente Card_Simple mejorado**: Eliminado `boxShadow` inválido, agregadas sombras nativas de React Native
-- ✅ **FloatingButton optimizado**: Corregidos errores de renderizado con React.Fragment
-- ✅ **Mejor soporte para Expo**: Configuración de Babel mejorada para `react-native-reanimated`
-- ✅ **Nuevos componentes estables**: `Card_Simple` y `FloatingButton` completamente funcionales
-- ✅ **Documentación actualizada**: Ejemplos y props sincronizadas con la implementación actual
+- ✅ **LayoutScreen System**: Sistema completo de layouts para estructurar pantallas con topBar, bottomBar y bodyScreen
+- ✅ **Tres tipos de BottomBar**: `Default`, `Bar_Floating`, y `BarWithFloatingButton` con estilos predefinidos
+- ✅ **SafeAreaProvider Integration**: Manejo automático de áreas seguras en dispositivos con notch o barras de estado
+- ✅ **Navegación Configurable**: Sistema de botones de navegación con iconos activos/inactivos y estados personalizables
+- ✅ **Body Types**: Soporte para `ScrollView` y `View` como contenedores del contenido principal
+- ✅ **Floating Button Support**: Integración nativa de botones flotantes en el layout con positioning automático
+- ✅ **TypeScript completo**: Tipado fuerte para todas las props del sistema de layout
+- ✅ **Documentación detallada**: Guías completas de implementación y ejemplos de uso
 
 ## Componentes
 
@@ -357,15 +358,91 @@ import { FloatingButton } from 'udev_ultime_native';
 
 **Nota:** El componente utiliza `react-native-reanimated` para animaciones suaves de opacidad y escala. Las opciones aparecen con animación desde el botón principal hacia arriba.
 
+### LayoutScreen
+
+Sistema de layout completo para estructurar pantallas con topBar, bottomBar y bodyScreen personalizables.
+
+```js
+import { LayoutScreen } from 'udev_ultime_native';
+
+<LayoutScreen
+  type_Body="ScrollView"
+  topBar={
+    <View style={{ backgroundColor: 'black', padding: 20 }}>
+      <Text style={{ textAlign: 'center', color: 'white' }}>Top Bar</Text>
+    </View>
+  }
+  type_BottomBar="Bar_Floating"
+  Data_BottomBar={[
+    {
+      label: "Home",
+      onPress: () => console.log("Home Pressed"),
+      icon_in: <Icon name="home" />,
+      icon_out: <Icon name="home-outline" />,
+      isInScreen: true,
+    },
+    {
+      label: "Settings",
+      onPress: () => console.log("Settings Pressed"),
+      icon_in: <Icon name="settings" />,
+      icon_out: <Icon name="settings-outline" />,
+      isInScreen: false,
+    }
+  ]}
+  floating_button={
+    <TouchableOpacity style={{ /* estilos */ }}>
+      <Text>+</Text>
+    </TouchableOpacity>
+  }
+  bodyScreen={
+    <View>
+      {/* Contenido de la pantalla */}
+    </View>
+  }
+/>
+```
+
+**Props:**
+
+- `topBar` (ReactNode, opcional): Componente personalizado para la barra superior
+- `bottomBar` (ReactNode, opcional): Componente personalizado para la barra inferior
+- `type_BottomBar` ('Default' | 'Bar_Floating' | 'BarWithFloatingButton', opcional): Tipo de barra inferior predefinida
+- `style_bottomBar` (StyleProp\<ViewStyle>, opcional): Estilos personalizados para la barra inferior
+- `bodyScreen` (ReactNode, requerido): Contenido principal de la pantalla
+- `type_Body` ('ScrollView' | 'View', opcional): Tipo de contenedor para el cuerpo de la pantalla
+- `Data_BottomBar` (array, opcional): Array de objetos para configurar los botones de la barra inferior
+- `floating_button` (ReactNode, opcional): Botón flotante personalizado (usado con 'BarWithFloatingButton')
+- `style_container_floating_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón flotante
+
+**Estructura de Data_BottomBar:**
+
+- `label` (string, opcional): Texto del botón
+- `onPress` (function, requerido): Función ejecutada al presionar
+- `icon_in` (ReactNode, requerido): Icono cuando está activo/en pantalla
+- `icon_out` (ReactNode, opcional): Icono cuando está inactivo
+- `isInScreen` (boolean, opcional): Indica si es la pantalla actual (para mostrar icon_in o icon_out)
+- `style_text` (StyleProp\<TextStyle>, opcional): Estilos del texto del botón
+- `style_button` (StyleProp\<ViewStyle>, opcional): Estilos del contenedor del botón
+- `onLongPress` (function, opcional): Función ejecutada al presionar prolongadamente
+
+**Tipos de BottomBar:**
+
+- `Default`: Barra inferior estándar con botones distribuidos uniformemente
+- `Bar_Floating`: Barra flotante centrada con bordes redondeados
+- `BarWithFloatingButton`: Barra estándar con un botón flotante posicionado arriba
+
+**Nota:** El componente utiliza `SafeAreaProvider` de `react-native-safe-area-context` para manejar áreas seguras en dispositivos con notch o barras de estado.
+
 ## Instalación de Dependencias
 
 ```sh
-npm install udev_ultime_native react-native-reanimated
+npm install udev_ultime_native react-native-reanimated react-native-safe-area-context
 ```
 
 **Importante:**
 
 - Para usar `FloatingButton`, es necesario instalar y configurar `react-native-reanimated` siguiendo la [documentación oficial](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation).
+- Para usar `LayoutScreen`, es necesario instalar `react-native-safe-area-context` siguiendo la [documentación oficial](https://github.com/th3rdwave/react-native-safe-area-context).
 - **Para proyectos Expo**: Crear `babel.config.js` en la raíz del proyecto:
 
 ```js
@@ -396,7 +473,8 @@ import {
   DropDown,
   ProgressBar,
   Card_Simple,
-  FloatingButton
+  FloatingButton,
+  LayoutScreen
 } from 'udev_ultime_native';
 
 // Usar cualquiera de los componentes en tu aplicación
@@ -423,7 +501,8 @@ import {
   DropDown, 
   ProgressBar,
   Card_Simple,
-  FloatingButton
+  FloatingButton,
+  LayoutScreen
 } from 'udev_ultime_native';
 
 export default function App() {
