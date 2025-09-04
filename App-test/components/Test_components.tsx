@@ -4,10 +4,11 @@ import {
   TouchableOpacity,
   View,
   Pressable,
-  TouchableHighlight,
   Image,
   // Animated,
   // Easing,
+  ScrollView,
+  FlatList,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -17,7 +18,8 @@ import Animated, {
 import { useState, useRef, useEffect } from "react";
 import type { Dispatch, JSX, ReactNode, SetStateAction } from "react";
 import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native";
-import { Button } from "udev_ultime_native";
+// import { Button } from "udev_ultime_native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 interface ProgressBar_Props {
   progress: number;
@@ -207,26 +209,6 @@ export const Card_Simple = ({
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 interface FloatingButtonProps {
   icon_hide: ReactNode;
   icon_show?: ReactNode;
@@ -244,7 +226,7 @@ interface FloatingButtonProps {
   onPress?: () => void;
   SelectFun_onPress: "onPress" | "Data_Button";
   SelectFun_onLongPress: "onLongPress" | "Data_Button";
-};
+}
 
 export const FloatingButton = ({
   icon_hide,
@@ -257,7 +239,7 @@ export const FloatingButton = ({
   onLongPress,
   onPress,
   SelectFun_onPress,
-  SelectFun_onLongPress
+  SelectFun_onLongPress,
 }: FloatingButtonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const opacity = useSharedValue<number>(1);
@@ -366,5 +348,266 @@ export const FloatingButton = ({
         {isOpen ? icon_show : icon_hide}
       </TouchableOpacity>
     </View>
+  );
+};
+
+const TopBar = {};
+
+const TypeBody = {
+  ScrollView: (bodyScreen: ReactNode) => {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+        {bodyScreen}
+      </ScrollView>
+    );
+  },
+  View: (bodyScreen: ReactNode) => {
+    return <View style={{ flex: 1 }}>{bodyScreen}</View>;
+  },
+};
+
+const TypeBottomBar = {
+  Default: (Data: DataBottomBar[], style_bottomBar: StyleProp<ViewStyle>) => {
+    return (
+      <View
+        style={[
+          {
+            paddingHorizontal: 18,
+            paddingTop: 10,
+            paddingBottom: 20,
+            backgroundColor: "white",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            borderWidth: 1,
+            borderColor: "#f8f9fa",
+            position: "relative",
+          },
+          style_bottomBar,
+        ]}
+      >
+        {Data?.map((items, index) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[
+                {
+                  height: 50,
+                  width: 50,
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+                items?.style_button,
+              ]}
+              onLongPress={items?.onLongPress}
+              onPress={items?.onPress}
+            >
+              {items?.isInScreen ? items?.icon_in : items?.icon_out}
+              <Text
+                style={[
+                  { fontSize: 10, fontWeight: "bold" },
+                  items?.style_text,
+                ]}
+              >
+                {items?.label}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  },
+  Bar_Floating: (
+    Data: DataBottomBar[],
+    style_bottomBar: StyleProp<ViewStyle>
+  ) => {
+    return (
+      <View
+        style={[
+          {
+            paddingHorizontal: 18,
+            backgroundColor: "white",
+            flexDirection: "row",
+            justifyContent: "center",
+            borderWidth: 1,
+            borderColor: "#f8f9fa",
+            position: "relative",
+          },
+        ]}
+      >
+        <View
+          style={[
+            {
+              borderWidth: 1,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: "100%",
+              position: "absolute",
+              bottom: 0,
+              transform: [{ translateY: -30 }],
+              padding: 10,
+              borderRadius: 20,
+              backgroundColor: "white",
+              borderColor: "#c3c3c453",
+            },
+            style_bottomBar,
+          ]}
+        >
+          {Data?.map((items, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  {
+                    height: 50,
+                    width: 50,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
+                  items?.style_button,
+                ]}
+                onLongPress={items?.onLongPress}
+                onPress={items?.onPress}
+              >
+                {items?.isInScreen ? items?.icon_in : items?.icon_out}
+                <Text
+                  style={[
+                    { fontSize: 10, fontWeight: "bold" },
+                    items?.style_text,
+                  ]}
+                >
+                  {items?.label}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+    );
+  },
+  BarWithFloatingButton: (
+    Data: DataBottomBar[],
+    style_bottomBar: StyleProp<ViewStyle>,
+    floating_button: ReactNode,
+    style_container_floating_button: StyleProp<ViewStyle>
+  ) => {
+    return (
+      <View
+        style={[
+          {
+            paddingHorizontal: 18,
+            paddingTop: 10,
+            paddingBottom: 20,
+            backgroundColor: "white",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            borderWidth: 1,
+            borderColor: "#f8f9fa",
+            position: "relative",
+          },
+          style_bottomBar,
+        ]}
+      >
+        <View
+          style={[
+            {
+              position: "absolute",
+              transform: [{ translateY: -70 }],
+              paddingRight: 10,
+              right: 0,
+            },
+            style_container_floating_button,
+          ]}
+        >
+          {floating_button}
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          {Data?.map((items, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  {
+                    height: 50,
+                    width: 50,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  },
+                  items?.style_button,
+                ]}
+                onLongPress={items?.onLongPress}
+                onPress={items?.onPress}
+              >
+                {items?.isInScreen ? items?.icon_in : items?.icon_out}
+                <Text
+                  style={[
+                    { fontSize: 10, fontWeight: "bold" },
+                    items?.style_text,
+                  ]}
+                >
+                  {items?.label}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+    );
+  },
+};
+
+type DataBottomBar = {
+  label?: string;
+  onPress: () => void;
+  icon_in: ReactNode;
+  icon_out?: ReactNode;
+  isInScreen?: boolean;
+  style_text?: StyleProp<TextStyle>;
+  style_button?: StyleProp<ViewStyle>;
+  onLongPress?: () => void;
+};
+
+interface LayoutScreenProps {
+  topBar?: ReactNode;
+  bottomBar?: ReactNode;
+  type_BottomBar?: keyof typeof TypeBottomBar;
+  style_bottomBar?: StyleProp<ViewStyle>;
+  bodyScreen: ReactNode;
+  type_Body?: keyof typeof TypeBody;
+  Data_BottomBar?: DataBottomBar[];
+  floating_button?: ReactNode;
+  style_container_floating_button?: StyleProp<ViewStyle>;
+}
+
+export const LayoutScreen = ({
+  topBar,
+  bottomBar,
+  bodyScreen,
+  type_Body,
+  type_BottomBar,
+  Data_BottomBar,
+  style_bottomBar,
+  floating_button,
+  style_container_floating_button,
+}: LayoutScreenProps) => {
+  return (
+    <SafeAreaProvider>
+      {topBar ? topBar : null}
+      {type_Body && TypeBody[type_Body](bodyScreen)}
+      {bottomBar
+        ? bottomBar
+        : type_BottomBar &&
+          TypeBottomBar[type_BottomBar](
+            Data_BottomBar ? Data_BottomBar : [],
+            style_bottomBar,
+            floating_button,
+            style_container_floating_button
+          )}
+    </SafeAreaProvider>
   );
 };

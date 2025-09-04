@@ -1,126 +1,87 @@
-import { View, Text } from "react-native";
-import { useState } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import {
-  Button,
-  DropDown,
-  InputPassword,
-  InputText,
-  InputTextarea,
-  ProgressBar,
-  FloatingButton,
-  Card_Simple,
-  // Card_Simple,
-} from "udev_ultime_native";
+import { LayoutScreen } from "@/components/Test_components";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Card_Simple } from "udev_ultime_native";
 
-export default function Index() {
-  const [showPassword, setShowPassword] = useState(true);
-  const [DropDownValue, setDropdownValue] = useState<
-    string | number | undefined
-  >();
-
+export default function index() {
   return (
-    <SafeAreaProvider
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    >
-      <View
-        style={{
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-          gap: 10,
-          height: "100%",
-          width: "100%",
-          paddingHorizontal: 20,
-          borderWidth: 1,
-          paddingBottom: 50,
-        }}
-      >
-        {/* <Text>index</Text> */}
-        {/* <Button title="Click Me" /> */}
-        {/* <InputPassword
-          // placeholder="Enter your password"
-          style_input={{ width: "80%" }}
-          // placeholderTextColor="gray"
-          setShowPassword={setShowPassword}
-          ShowPassword={showPassword}
-          iconPasswordHide={<Text>Show</Text>}
-          iconPasswordShow={<Text>Hide</Text>}
-        /> */}
-        {/* <InputText
-          placeholder="Enter your text"
-          style_container={{
-            borderWidth: 1,
-            width: "100%",
-            borderColor: "gray",
-            borderRadius: 10,
-            padding: 10,
-          }}
-          style_input={{ width: "80%" }}
-          placeholderTextColor="gray"
-        /> */}
+    <LayoutScreen
+      type_Body="ScrollView"
+      topBar={
+        <View style={{ backgroundColor: "black", padding: 20 }}>
+          <Text style={{ textAlign: "center",color:"white" ,fontWeight:"bold",fontSize:20}}>Top Bar</Text>
+        </View>
+      }
+      type_BottomBar="Bar_Floating"
+      Data_BottomBar={[
+        {
+          label: "Home",
+          onPress: () => console.log("Home Pressed"),
+          icon_in: <Text style={{ fontSize: 24 }}>🏠</Text>,
+          icon_out: <Text style={{ fontSize: 24 }}>🏠</Text>,
+          isInScreen: true,
+        },
+        {
+          label: "Settings",
+          onPress: () => console.log("Settings Pressed"),
+          icon_in: <Text style={{ fontSize: 24 }}>⚙️</Text>,
+          icon_out: <Text style={{ fontSize: 24 }}>⚙️</Text>,
+          isInScreen: true,
+        },
+        {
+          label: "Noti",
+          onPress: () => console.log("Notifications Pressed"),
+          icon_in: <Text style={{ fontSize: 24 }}>🔔</Text>,
+          icon_out: <Text style={{ fontSize: 24 }}>🔔</Text>,
+          isInScreen: true,
+        },
+        {
+          label: "perfil",
+          onPress: () => console.log("perfil Pressed"),
+          icon_in: <Text style={{ fontSize: 24 }}>👤</Text>,
+          icon_out: <Text style={{ fontSize: 24 }}>👤</Text>,
+          isInScreen: true,
+        },
+        {
+          label: "search",
+          onPress: () => console.log("search Pressed"),
+          icon_in: <Text style={{ fontSize: 24 }}>🔍</Text>,
+          icon_out: <Text style={{ fontSize: 24 }}>🔍</Text>,
+          isInScreen: true, //USando el Path de Expo router podras mandar un booleano el cula permitira evaluar si es o no la ruta
+        },
+      ]}
 
-        {/* <InputTextarea
-          placeholder="Enter your textarea"
-          style_container={{
+      floating_button={
+        <TouchableOpacity
+          style={{
             borderWidth: 1,
-            width: "100%",
-            borderColor: "gray",
-            borderRadius: 10,
-            padding: 10,
-          }}
-          style_input={{ width: "80%" }}
-          placeholderTextColor="gray"
-        /> */}
-
-        {/* <DropDown
-          data_option={[
-            { label: "Option 1", value: "Option 1" },
-            { label: "Option 2", value: "Option 2" },
-            { label: "Option 3", value: "Option 3" },
-          ]}
-          style_container={{
-            borderWidth: 1,
-            borderRadius: 10,
-            width: "100%",
-            paddingVertical: 10,
-          }}
-          placeholder="Select an option"
-          style_container_option={{
-            borderWidth: 1,
-            position: "absolute",
-            zIndex: 1000,
-            backgroundColor: "white",
-            marginTop: 55,
-            width: "100%",
-            padding: 5,
-            borderRadius: 15,
-            gap: 10,
-          }}
-          style_buttonOpen_option={{
-            width: "100%",
-            paddingVertical: 5,
-            flexDirection: "row",
+            height: 60,
+            width: 60,
+            borderRadius: 20,
             justifyContent: "center",
+            alignItems: "center",
+            backgroundColor:"white"
           }}
-          setValue={setDropdownValue}
-          Value={DropDownValue}
-          style_text_placeholder={{ color: "black", alignItems: "center" }}
-          style_button_option={{
-            width: "100%",
-            borderRadius: 10,
-            padding: 10,
+        >
+          <Text>+</Text>
+        </TouchableOpacity>
+      }
+      bodyScreen={
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            gap:10,
+            height: "100%",
+            paddingTop: 10,
+            paddingBottom:120,
           }}
-        /> */}
-        {/* <ProgressBar progress={50} show_percentage={true} /> */}
-        {/* <Card_Simple
-        /> */}
-
-        <Card_Simple
-          imageUri="https://i.pinimg.com/736x/c7/0c/11/c70c1141aca40688b2cfd52b2010edd1.jpg"
-          style_button={{ backgroundColor: "gray" }}
-          
-        />
-      </View>
-    </SafeAreaProvider>
+        >
+          <Card_Simple/>
+          <Card_Simple/>
+          <Card_Simple/>
+          <Card_Simple/>
+        </View>
+      }
+    />
   );
 }
